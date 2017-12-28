@@ -11,17 +11,18 @@ ext {
     ]
     dependencies = [
             //support
-            "support-v4"     : "com.android.support:support-v4:23.4.0",
-            "appcompat-v7"   : 'com.android.support:appcompat-v7:23.4.0',
-            "design"         : 'com.android.support:design:23.4.0',
-            "recyclerview-v7": 'com.android.support:recyclerview-v7:23.4.0',
+            "support-v4"       : "com.android.support:support-v4:26.1.0",
+            "appcompat-v7"     : 'com.android.support:appcompat-v7:26.1.0',
+            "design"           : 'com.android.support:design:26.1.0',
+            "recyclerview-v7"  : 'com.android.support:recyclerview-v7:26.1.0',
+            "constraint-layout": 'com.android.support.constraint:constraint-layout:1.0.2',
             //okhttp 3.3.1
-            "okhttp"         : 'com.squareup.okhttp3:okhttp:3.3.1',
+            "okhttp"           : 'com.squareup.okhttp3:okhttp:3.3.1',
             //gson
-            "gson"           : 'com.google.code.gson:gson:2.7',
+            "gson"             : 'com.google.code.gson:gson:2.7',
             //glide
-            "glide"          : 'com.github.bumptech.glide:glide:4.3.1',
-            'glide_complier' : 'com.github.bumptech.glide:compiler:4.3.1',
+            "glide"            : 'com.github.bumptech.glide:glide:4.3.1',
+            'glide_complier'   : 'com.github.bumptech.glide:compiler:4.3.1',
     ]
 
 }

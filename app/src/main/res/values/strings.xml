@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MvpReader</string>
+
+    <string name="drawer_open_des">open</string>
+    <string name="drawer_close_des">close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
