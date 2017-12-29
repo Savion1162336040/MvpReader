@@ -1,13 +1,44 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.savion.mvpreader.fragment.NewsFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment"
+        android:visibility="gone"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/opendrawer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="openDrawer"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/news_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:tabBackground="?colorPrimary"
+        app:tabIndicatorColor="?colorPrimaryDark"
+        app:tabIndicatorHeight="@dimen/indicatorHeight"
+        app:tabTextColor="#987654"
+        app:tabSelectedTextColor="#123456"
+        android:background="?colorPrimary"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/news_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

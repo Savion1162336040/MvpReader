@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="main_tab">
+
+        <attr name="tag" format="string"/>
+        <attr name="id" format="integer"/>
+        <attr name="target" format="string"/>
+        <attr name="isRemote" format="boolean"/>
+
+    </declare-styleable>
+</resources>

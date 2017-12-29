@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="main_tab">
+        <item>{\"tag\":\"news\",\"id\":\"1\",\"isRemote\":false,\"parent\":\"main\",\"target\":\"\"}</item>
+        <item>{\"tag\":\"comine more\",\"id\":\"2\",\"isRemote\":false,\"parent\":\"main\",\"target\":\"\"}</item>
+    </array>
+    <array name="news_tab">
+        <item>{\"tag\":\"news\",\"title\":\"新闻\",\"id\":\"1\",\"isRemote\":false,\"parent\":\"main\",\"target\":\"\"}</item>
+        <item>{\"tag\":\"blog\",\"title\":\"博客\",\"id\":\"2\",\"isRemote\":false,\"parent\":\"main\",\"target\":\"\"}</item>
+    </array>
+</resources>

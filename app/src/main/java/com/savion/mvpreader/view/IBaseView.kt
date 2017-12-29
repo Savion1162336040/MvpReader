@@ -1,10 +1,19 @@
-package com.savion.mvpreader.view
+package com.sw.mvp.view
 
-import com.savion.mvpreader.presenter.IBasePresenter
+import android.content.Context
+import com.sw.mvp.presenter.BasePresenter
 
 /**
- * Created by Administrator on 2017-12-28.
+ * Created by Administrator on 2017-12-22.
+ * baseview identify basic view behavior
+ * 定义了各个view的基本行为
+ * ibaseview由BaseActivity来实现其基本行为
  */
-interface IBaseView<T : IBasePresenter> {
-    fun setPresenter(presenter: T)
+interface IBaseView {
+    fun showToast(str:String)
+    fun showError(str:String)
+    fun showLoading()
+    fun dismissLoading()
+    fun getIContext():Context
+
 }

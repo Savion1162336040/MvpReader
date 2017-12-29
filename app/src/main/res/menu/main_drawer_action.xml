@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/main_drawer_action_news"
-        android:icon="@drawable/ic_new"
-        android:title="news"
-        />
-    <item android:id="@+id/main_drawer_action_coming"
-        android:icon="@drawable/ic_more"
-        android:title="coming more"
-        />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:id="@+id/main_draw_group_text"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/main_drawer_action_news"
+            android:checked="true"
+            android:icon="@drawable/ic_new"
+            android:title="新闻"
+            app:id="1"
+            app:isRemote="false"
+            app:tag="news"
+            app:target="" />
+        <item
+            android:id="@+id/main_drawer_action_coming"
+            android:checked="false"
+            android:icon="@drawable/ic_more"
+            android:title="更多"
+            app:id="2"
+            app:isRemote="false"
+            app:tag="coming"
+            app:target="" />
+    </group>
+    <group android:id="@+id/main_drawer_group_icon"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/main_drawer_action_pic"
+            android:checked="true"
+            android:icon="@drawable/ic_image"
+            android:title="美图"
+            app:id="1"
+            app:isRemote="false"
+            app:tag="news"
+            app:target="" />
+    </group>
 </menu>
