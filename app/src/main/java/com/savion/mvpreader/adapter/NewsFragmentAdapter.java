@@ -10,6 +10,7 @@ import com.savion.mvpreader.Constant;
 import com.savion.mvpreader.bean.Tab;
 import com.savion.mvpreader.fragment.NewsContentFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ import java.util.Map;
 public class NewsFragmentAdapter extends FragmentPagerAdapter {
 
     private List<Tab> tabList;
-    private List<Fragment> fragmentList;
+    private List<Fragment> fragmentList = new ArrayList<Fragment>();
     private final FragmentManager fragmentManager;
 
     public NewsFragmentAdapter(FragmentManager fm, List<Tab> fragmentMap) {

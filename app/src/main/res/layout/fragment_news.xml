@@ -32,8 +32,6 @@
         app:tabBackground="?colorPrimary"
         app:tabIndicatorColor="?colorPrimaryDark"
         app:tabIndicatorHeight="@dimen/indicatorHeight"
-        app:tabTextColor="#987654"
-        app:tabSelectedTextColor="#123456"
         android:background="?colorPrimary"/>
 
     <android.support.v4.view.ViewPager

@@ -65,12 +65,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
     private void setUpDrawer() {
         drawerLayout = findViewById(R.id.drawer);
         final NavigationView navigationView = findViewById(R.id.main_drawer_navigation);
-        navigationView.setOnCreateContextMenuListener(this);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 //setitem selected
                 item.setChecked(true);
+                transforFragment(item.getTitle().toString());
                 drawerLayout.closeDrawers();
                 return true;
             }

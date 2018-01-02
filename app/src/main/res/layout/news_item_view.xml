@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/news_item_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="74dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/news_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="start"
+        android:text="titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintLeft_toRightOf="@id/news_item_icon"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/news_item_content"
+        android:layout_width="313dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="8dp"
+        android:text="content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/news_item_icon"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/news_item_title" />
+
+    <TextView
+        android:id="@+id/news_item_date"
+        android:layout_width="155dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="8dp"
+        android:text="date"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/news_item_icon"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/news_item_content" />
+
+    <TextView
+        android:id="@+id/news_item_from"
+        android:layout_width="158dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="8dp"
+        android:text="from"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/news_item_date"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/news_item_content" />
+
+</android.support.constraint.ConstraintLayout>
