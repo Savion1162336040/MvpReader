@@ -1,7 +1,4 @@
-package com.savion.mvpreader.model;
-
-import com.savion.mvpreader.bean.News;
-import com.sw.mvp.biz.resultFormat.ParseTemp;
+package com.savion.mvpreader.model.parse;
 
 import java.io.IOException;
 

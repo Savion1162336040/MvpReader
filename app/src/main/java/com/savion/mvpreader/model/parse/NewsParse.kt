@@ -1,12 +1,9 @@
-package com.savion.mvpreader.model
+package com.savion.mvpreader.model.parse
 
 import com.google.gson.Gson
 import com.savion.mvpreader.bean.News
 import com.savion.mvpreader.bean.NewsMessageSource
 import com.savion.mvpreader.bean.Result
-import com.sw.mvp.biz.resultFormat.ParseTemp
-import org.json.JSONObject
-import java.net.URL
 
 /**
  * Created by Administrator on 2018-01-02.

@@ -1,6 +1,4 @@
-package com.sw.mvp.biz.resultFormat
-
-import org.json.JSONObject
+package com.savion.mvpreader.model.parse
 
 /**
  * Created by Administrator on 2017-12-22.

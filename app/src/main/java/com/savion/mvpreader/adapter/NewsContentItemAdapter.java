@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.savion.mvpreader.GlideApp;
 import com.savion.mvpreader.R;
-import com.savion.mvpreader.bean.News;
+import com.savion.mvpreader.model.bean.News;
 
 import java.util.List;
 

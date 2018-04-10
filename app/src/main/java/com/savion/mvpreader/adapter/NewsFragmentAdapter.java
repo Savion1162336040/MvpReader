@@ -7,12 +7,11 @@ import android.util.Log;
 import android.view.ViewGroup;
 
 import com.savion.mvpreader.Constant;
-import com.savion.mvpreader.bean.Tab;
-import com.savion.mvpreader.fragment.NewsContentFragment;
+import com.savion.mvpreader.model.bean.Tab;
+import com.savion.mvpreader.ui.fragment.NewsContentFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017-12-29.

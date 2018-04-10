@@ -7,8 +7,18 @@ import android.app.Application;
  */
 
 public class MvpApplication extends Application {
+
+    public static Application instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
     }
+
+    private void createAppComponent(){
+
+
+    }
+
 }

@@ -1,7 +1,6 @@
-package com.savion.mvpreader.model
+package com.savion.mvpreader.model.parse
 
-import com.savion.mvpreader.bean.Tab
-import com.sw.mvp.biz.resultFormat.ParseTemp
+import com.savion.mvpreader.model.bean.Tab
 import org.json.JSONObject
 
 /**

@@ -5,11 +5,10 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.savion.mvpreader.bean.News;
-import com.savion.mvpreader.bean.Result;
-import com.savion.mvpreader.model.NewsParse;
+import com.savion.mvpreader.model.bean.News;
+import com.savion.mvpreader.model.bean.Result;
+import com.savion.mvpreader.model.parse.NewsParse;
 import com.savion.mvpreader.presenter.NewsMessagePresenter;
-import com.sw.mvp.presenter.BasePresenter;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,7 +20,6 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
