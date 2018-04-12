@@ -23,7 +23,7 @@ class AppModule @Inject constructor(val application: MvpApplication) {
 
     @Provides
     @Singleton
-    fun provideHttpManager(helper: HttpManager): HttpHelper {
+    fun provideHttpManager(helper: HttpManager): HttpManager {
         return helper
     }
     @Provides

@@ -1,14 +1,11 @@
 package com.savion.mvpreader.presenter
 
-import com.savion.mvpreader.bean.News
-import com.savion.mvpreader.bean.Result
+import com.savion.mvpreader.model.bean.News
+import com.savion.mvpreader.model.bean.Result
 import com.savion.mvpreader.common.RxUtils
 import com.savion.mvpreader.contract.NewsMessageContract
 import com.savion.mvpreader.contract.RxPresenter
 import com.savion.mvpreader.model.DataManager
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.Observable
 import javax.inject.Inject
 
 /**
@@ -29,8 +26,21 @@ class NewsMessagePresenter @Inject constructor(val dataManager: DataManager) : R
     }
 
     override fun getNewsMessage(key: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        dataManager.getJuheNews(key).compose(RxUtils.commonFlowableScheduler()).subscribe()
+        dataManager.getJuheNews(key).compose(RxUtils.commonFlowableScheduler()).doOnNext { t ->
+            view.refreshCompelete()
+            if (t.error_code == 0) {
+                if (t.result!!.stat == 1) {
+                    view.notifyData(t.result!!.data!!)
+                } else
+                    view.showError("no data")
+            } else {
+                view.showError(t.reason!!)
+            }
+        }.doOnError { t: Throwable? ->
+                    view.showError(String.format("getNewsMessage error:%s", t!!.message))
+                }.doOnSubscribe {
+                    view.refreshStart()
+                }.subscribe()
     }
 //    fun getNewsMessage(key: String) {
 //        if (isViewAttach()){

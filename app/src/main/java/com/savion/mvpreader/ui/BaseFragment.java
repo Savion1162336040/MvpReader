@@ -1,11 +1,10 @@
 package com.savion.mvpreader.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.savion.mvpreader.MvpApplication;
 import com.savion.mvpreader.di.component.DaggerFragmentComponet;
 import com.savion.mvpreader.di.component.FragmentComponet;
 import com.savion.mvpreader.di.module.FragmentModule;
@@ -44,7 +43,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends SimpleFragme
     }
 
     protected FragmentComponet getComponent() {
-        return DaggerFragmentComponet.builder().fragmentModule(getModule()).build();
+        return DaggerFragmentComponet.builder().appComponent(MvpApplication.createAppComponent()).fragmentModule(getModule()).build();
     }
 
     protected abstract void inject();

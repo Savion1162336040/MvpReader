@@ -1,7 +1,8 @@
 package com.savion.mvpreader.contract
 
-import com.savion.mvpreader.bean.News
-import com.savion.mvpreader.bean.Result
+import com.savion.mvpreader.model.bean.News
+import com.savion.mvpreader.model.bean.Result
+import com.savion.mvpreader.model.response.JUHENewsResponse
 import com.sw.mvp.presenter.BasePresenter
 import com.sw.mvp.view.IBaseView
 
@@ -26,7 +27,7 @@ class NewsMessageContract {
         fun initPresenteData()
 
         //刷新列表数据
-        fun notifyData(news: List<News>)
+        fun notifyData(news: List<JUHENewsResponse.JUHENewsResponseData>)
 
         //开始刷新动画
         fun refreshStart()

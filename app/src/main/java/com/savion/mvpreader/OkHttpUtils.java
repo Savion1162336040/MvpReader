@@ -5,14 +5,11 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.savion.mvpreader.model.bean.News;
-import com.savion.mvpreader.model.bean.Result;
 import com.savion.mvpreader.model.parse.NewsParse;
 import com.savion.mvpreader.presenter.NewsMessagePresenter;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -67,17 +64,17 @@ public class OkHttpUtils {
                 //presenter.onSuccess(response.body().toString());
                 String string = response.body().string().toString();
                 Log.w(Constant.TAG, String.format("getNewsMessage onResponse:%s", string));
-                final Result<List<News>> result = new NewsParse(string).parse();
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (result.getError_code() != 0) {
-                            presenter.onFailed(result.getError_message());
-                        } else {
-                            presenter.onSuccess(result);
-                        }
-                    }
-                });
+//                final Result<List<News>> result = new NewsParse(string).parse();
+//                mainHandler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (result.getError_code() != 0) {
+//                            presenter.onFailed(result.getError_message());
+//                        } else {
+//                            presenter.onSuccess(result);
+//                        }
+//                    }
+//                });
             }
         });
         callMap.put(API_NEWS_MESSAGE, call);

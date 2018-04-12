@@ -1,6 +1,7 @@
 package com.savion.mvpreader.common;
 
 import com.savion.mvpreader.model.exception.ApiException;
+import com.savion.mvpreader.model.exception.ApiException2;
 import com.savion.mvpreader.model.response.JUHENewsResponse;
 
 import org.reactivestreams.Publisher;
@@ -11,6 +12,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -38,20 +40,42 @@ public class RxUtils {
         };
     }
 
-    public static <T> FlowableTransformer<JUHENewsResponse<T>, T> parseJUHEData() {
-        return new FlowableTransformer<JUHENewsResponse<T>, T>() {
-            @Override
-            public Publisher<T> apply(Flowable<JUHENewsResponse<T>> upstream) {
-                return upstream.flatMap(tjuheNewsResponse -> {
-                    if (tjuheNewsResponse.getError_code() == 0) {
-                        return tjuheNewsResponse.getResult();
-                    } else {
-                        //occur exception
-                        return Flowable.error(new ApiException(tjuheNewsResponse.getError_code(),tjuheNewsResponse.getReason()));
-                    }
-                });
-            }
-        };
-    }
+//    public static <T> FlowableTransformer<JUHENewsResponse<T>, T> parseJUHEData() {
+//        return new FlowableTransformer<JUHENewsResponse<T>, T>() {
+//            @Override
+//            public Publisher<T> apply(Flowable<JUHENewsResponse<T>> upstream) {
+//                return upstream.flatMap(tjuheNewsResponse -> {
+//                    if (tjuheNewsResponse.getError_code() == 0) {
+//                        return tjuheNewsResponse.getResult();
+//                    } else {
+//                        //occur exception
+//                        return Flowable.error(new ApiException(tjuheNewsResponse.getError_code(),tjuheNewsResponse.getReason()));
+//                    }
+//                });
+//            }
+//        };
+//    }
+    /**
+     * 统一返回结果处理
+     * @param <T>
+     * @return
+     */
+//    public static <T> FlowableTransformer<JUHENewsResponse<T>, T> handleResult() {   //compose判断结果
+//        return new FlowableTransformer<JUHENewsResponse<T>, T>() {
+//            @Override
+//            public Flowable<T> apply(Flowable<JUHENewsResponse<T>> httpResponseFlowable) {
+//                return httpResponseFlowable.flatMap(new Function<JUHENewsResponse<T>, Flowable<T>>() {
+//                    @Override
+//                    public Flowable<T> apply(JUHENewsResponse<T> tGankHttpResponse) {
+//                        if(tGankHttpResponse.success()) {
+//                            return tGankHttpResponse;
+//                        } else {
+//                            return Flowable.error(new ApiException("服务器返回error"));
+//                        }
+//                    }
+//                });
+//            }
+//        };
+//    }
 
 }

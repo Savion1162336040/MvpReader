@@ -4,6 +4,7 @@ import com.savion.mvpreader.model.behavior.HttpHelper
 import com.savion.mvpreader.model.http.service.JUHEService
 import com.savion.mvpreader.model.response.JUHENewsResponse
 import io.reactivex.Flowable
+import retrofit2.Retrofit
 
 import javax.inject.Inject
 

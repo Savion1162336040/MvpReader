@@ -1,6 +1,6 @@
 package com.savion.mvpreader.contract;
 
-import com.savion.mvpreader.bean.Tab;
+import com.savion.mvpreader.model.bean.Tab;
 import com.sw.mvp.presenter.BasePresenter;
 import com.sw.mvp.view.IBaseView;
 

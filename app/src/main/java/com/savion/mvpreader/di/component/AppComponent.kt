@@ -1,9 +1,10 @@
 package com.savion.mvpreader.di.component
 
 import android.app.Application
+import com.savion.mvpreader.MvpApplication
 import com.savion.mvpreader.di.module.AppModule
 import com.savion.mvpreader.di.module.HttpModule
-import com.savion.mvpreader.model.http.service.HttpManager
+import com.savion.mvpreader.model.http.HttpManager
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
 
-    fun getApp(): Application
+    fun getApp(): MvpApplication
 
     fun getHttpManager(): HttpManager
 

@@ -1,7 +1,7 @@
 package com.savion.mvpreader.presenter
 
 import com.savion.mvpreader.R
-import com.savion.mvpreader.bean.Tab
+import com.savion.mvpreader.model.bean.Tab
 import com.savion.mvpreader.common.RxUtils
 import com.savion.mvpreader.contract.NewsMainContract
 import com.savion.mvpreader.contract.RxPresenter

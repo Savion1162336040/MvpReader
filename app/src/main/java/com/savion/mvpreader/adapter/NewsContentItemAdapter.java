@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.savion.mvpreader.GlideApp;
 import com.savion.mvpreader.R;
-import com.savion.mvpreader.model.bean.News;
+import com.savion.mvpreader.model.response.JUHENewsResponse;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ import java.util.List;
 public class NewsContentItemAdapter extends RecyclerView.Adapter<NewsContentItemAdapter.NewsHolder> {
 
     private final Context mContext;
-    private final List<News> mNews;
+    private final List<JUHENewsResponse.JUHENewsResponseData> mNews;
 
-    public NewsContentItemAdapter(Context context, List<News> news) {
+    public NewsContentItemAdapter(Context context, List<JUHENewsResponse.JUHENewsResponseData> news) {
         this.mContext = context;
         this.mNews = news;
     }
@@ -42,11 +42,11 @@ public class NewsContentItemAdapter extends RecyclerView.Adapter<NewsContentItem
 
     @Override
     public void onBindViewHolder(NewsHolder holder, int position) {
-        holder.tvFrom.setText(mNews.get(position).getFrom());
+        holder.tvFrom.setText(mNews.get(position).getAuthor_name());
         holder.tvTitle.setText(mNews.get(position).getTitle());
         holder.tvDate.setText(mNews.get(position).getDate());
-        holder.tvContent.setText(mNews.get(position).getContent());
-        GlideApp.with(mContext).load(mNews.get(position).getIcon()).centerCrop().placeholder(R.mipmap.ic_launcher).into(holder.imageView);
+        holder.tvContent.setText(mNews.get(position).getTitle());
+        GlideApp.with(mContext).load(mNews.get(position).getThumbnail_pic_s()).centerCrop().placeholder(R.mipmap.ic_launcher).into(holder.imageView);
     }
 
     @Override

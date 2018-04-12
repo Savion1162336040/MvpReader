@@ -16,7 +16,7 @@ import butterknife.internal.ListenerMethod;
  * 实现NavigationView的OnNavigationItemSelected事件注入
  */
 @Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
+@Retention(RetentionPolicy.CLASS)
 @ListenerClass(targetType = "android.support.design.widget.NavigationView",
         setter = "setNavigationItemSelectedListener",
         type = "android.support.design.widget.NavigationView.OnNavigationItemSelectedListener",

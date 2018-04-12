@@ -1,4 +1,4 @@
-package com.savion.mvpreader.bean
+package com.savion.mvpreader.model.bean
 
 /**
  * Created by Administrator on 2018-01-02.

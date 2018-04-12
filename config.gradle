@@ -17,34 +17,35 @@ ext {
     ]
     dependencies = [
             //support
-            "support-v4"             : "com.android.support:support-v4:${version.support}",
-            "appcompat-v7"           : "com.android.support:appcompat-v7:${version.support}",
-            "design"                 : "com.android.support:design:${version.support}",
-            "recyclerview-v7"        : "com.android.support:recyclerview-v7:${version.support}",
-            "constraint-layout"      : "com.android.support.constraint:constraint-layout:1.0.2",
+            "support-v4"              : "com.android.support:support-v4:${version.support}",
+            "appcompat-v7"            : "com.android.support:appcompat-v7:${version.support}",
+            "design"                  : "com.android.support:design:${version.support}",
+            "recyclerview-v7"         : "com.android.support:recyclerview-v7:${version.support}",
+            "constraint-layout"       : "com.android.support.constraint:constraint-layout:1.0.2",
+            "multidex"                : "com.android.support:multidex:1.0.2",
             //okhttp 3.3.1
-            "okhttp"                 : 'com.squareup.okhttp3:okhttp:3.3.1',
+            "okhttp"                  : 'com.squareup.okhttp3:okhttp:3.3.1',
             //gson
-            "gson"                   : 'com.google.code.gson:gson:2.7',
+            "gson"                    : 'com.google.code.gson:gson:2.7',
             //glide
-            "glide"                  : 'com.github.bumptech.glide:glide:4.4.0',
-            'glide_complier'         : 'com.github.bumptech.glide:compiler:4.4.0',
-            "rxAndroid"              : "io.reactivex.rxjava2:rxandroid:2.0.1",
-            "rxJava"                 : "io.reactivex.rxjava2:rxjava:2.1.8",
-            "rxpermissions"          : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar",
+            "glide"                   : 'com.github.bumptech.glide:glide:4.4.0',
+            'glide_complier'          : 'com.github.bumptech.glide:compiler:4.4.0',
+            "rxAndroid"               : "io.reactivex.rxjava2:rxandroid:2.0.1",
+            "rxJava"                  : "io.reactivex.rxjava2:rxjava:2.1.8",
+            "rxpermissions"           : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar",
             //com.squareup.retrofit2:retrofit
-            "retrofit"               : "com.squareup.retrofit2:retrofit:${version.retrofit}",
-            "retrofit-converter-gson": "com.squareup.retrofit2:converter-gson:${version.retrofit}",
-            "retrofit-adapter-rxjava2"  : "com.squareup.retrofit2:adapter-rxjava2:${version.retrofit}",
+            "retrofit"                : "com.squareup.retrofit2:retrofit:${version.retrofit}",
+            "retrofit-converter-gson" : "com.squareup.retrofit2:converter-gson:${version.retrofit}",
+            "retrofit-adapter-rxjava2": "com.squareup.retrofit2:adapter-rxjava2:${version.retrofit}",
             //dagger2
-            "dagger2"                : "com.google.dagger:dagger:${version.dagger2}",
-            "dagger-compiler"        : "com.google.dagger:dagger-compiler:${version.dagger2}",
+            "dagger2"                 : "com.google.dagger:dagger:${version.dagger2}",
+            "dagger-compiler"         : "com.google.dagger:dagger-compiler:${version.dagger2}",
             //butterknife
-            "butterknife"            : "com.jakewharton:butterknife:${version.butterknife}",
-            "butterknife_compiler"   : "com.jakewharton:butterknife-compiler:${version.butterknife}",
-            "logger"                 : "com.orhanobut:logger:1.15",
+            "butterknife"             : "com.jakewharton:butterknife:${version.butterknife}",
+            "butterknife_compiler"    : "com.jakewharton:butterknife-compiler:${version.butterknife}",
+            "logger"                  : "com.orhanobut:logger:1.15",
 
-            "fragmentation"          : "me.yokeyword:fragmentation:0.10.4",
+            "fragmentation"           : "me.yokeyword:fragmentation:0.10.4",
     ]
 
 }

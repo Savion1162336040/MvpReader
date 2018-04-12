@@ -1,4 +1,4 @@
-package com.savion.mvpreader.bean
+package com.savion.mvpreader.model.bean
 
 import java.io.Serializable
 

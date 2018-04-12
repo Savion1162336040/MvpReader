@@ -3,6 +3,7 @@ package com.savion.mvpreader.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.savion.mvpreader.MvpApplication;
 import com.savion.mvpreader.di.component.ActivityComponent;
 import com.savion.mvpreader.di.component.DaggerActivityComponent;
 import com.savion.mvpreader.di.module.ActivityModule;
@@ -25,7 +26,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends SimpleActivi
     protected abstract void inject();
 
     protected ActivityComponent getComponent() {
-        return DaggerActivityComponent.builder().activityModule(getModule()).build();
+        return DaggerActivityComponent.builder().appComponent(MvpApplication.createAppComponent()).activityModule(getModule()).build();
     }
 
     protected ActivityModule getModule() {

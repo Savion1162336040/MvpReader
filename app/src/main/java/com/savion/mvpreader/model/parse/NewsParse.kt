@@ -1,9 +1,9 @@
 package com.savion.mvpreader.model.parse
 
 import com.google.gson.Gson
-import com.savion.mvpreader.bean.News
-import com.savion.mvpreader.bean.NewsMessageSource
-import com.savion.mvpreader.bean.Result
+import com.savion.mvpreader.model.bean.News
+import com.savion.mvpreader.model.bean.NewsMessageSource
+import com.savion.mvpreader.model.bean.Result
 
 /**
  * Created by Administrator on 2018-01-02.
@@ -20,7 +20,7 @@ class NewsParse(val jsonObject: String) : ParseTemp<Result<List<News>>>() {
         result.error_message = news.reason
         if (news.result!=null&&news.result.data!=null&&news.result.data.size>0) {
             var newsList:ArrayList<News> = ArrayList<News>()
-            var en:News
+            var en: News
             for (news in news.result.data){
                 en = News()
                 en.id = news.uniquekey

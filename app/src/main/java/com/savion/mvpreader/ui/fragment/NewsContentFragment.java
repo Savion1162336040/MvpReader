@@ -14,9 +14,12 @@ import com.savion.mvpreader.adapter.NewsContentItemAdapter;
 import com.savion.mvpreader.model.bean.News;
 import com.savion.mvpreader.model.bean.Tab;
 import com.savion.mvpreader.contract.NewsMessageContract;
+import com.savion.mvpreader.model.response.JUHENewsResponse;
 import com.savion.mvpreader.presenter.NewsMessagePresenter;
 import com.savion.mvpreader.ui.BaseFragment;
 import com.savion.mvpreader.ui.bind.OnSwipeRefresh;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +46,7 @@ public class NewsContentFragment extends BaseFragment<NewsMessagePresenter> impl
     protected RecyclerView recyclerView;
     private NewsContentItemAdapter newsContentItemAdapter;
 
-    private List<News> newsList;
+    private List<JUHENewsResponse.JUHENewsResponseData> newsList;
 
     public NewsContentFragment() {
         // Required empty public constructor
@@ -107,14 +110,6 @@ public class NewsContentFragment extends BaseFragment<NewsMessagePresenter> impl
     }
 
     @Override
-    public void notifyData(List<News> newsList) {
-        this.newsList.clear();
-        this.newsList.addAll(newsList);
-        if (newsContentItemAdapter != null)
-            newsContentItemAdapter.notifyDataSetChanged();
-    }
-
-    @Override
     public void refreshStart() {
         if (refreshLayout != null)
             refreshLayout.setRefreshing(true);
@@ -129,5 +124,13 @@ public class NewsContentFragment extends BaseFragment<NewsMessagePresenter> impl
     @Override
     protected void inject() {
         getComponent().inject(this);
+    }
+
+    @Override
+    public void notifyData(@NotNull List<JUHENewsResponse.JUHENewsResponseData> news) {
+        this.newsList.clear();
+        this.newsList.addAll(news);
+        if (newsContentItemAdapter != null)
+            newsContentItemAdapter.notifyDataSetChanged();
     }
 }
