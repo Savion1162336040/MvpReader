@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.savion.mvpreader.GlideApp;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.savion.mvpreader.MyGlideApp;
 import com.savion.mvpreader.R;
 import com.savion.mvpreader.model.response.JUHENewsResponse;
 
@@ -46,7 +48,7 @@ public class NewsContentItemAdapter extends RecyclerView.Adapter<NewsContentItem
         holder.tvTitle.setText(mNews.get(position).getTitle());
         holder.tvDate.setText(mNews.get(position).getDate());
         holder.tvContent.setText(mNews.get(position).getTitle());
-        GlideApp.with(mContext).load(mNews.get(position).getThumbnail_pic_s()).centerCrop().placeholder(R.mipmap.ic_launcher).into(holder.imageView);
+        Glide.with(mContext).load(mNews.get(position).getThumbnail_pic_s()).into(holder.imageView);
     }
 
     @Override

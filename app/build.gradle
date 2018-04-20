@@ -45,7 +45,7 @@ dependencies {
     implementation rootProject.ext.dependencies['rxAndroid']
     annotationProcessor rootProject.ext.dependencies['glide_complier']
     implementation rootProject.ext.dependencies['dagger2']
-    annotationProcessor rootProject.ext.dependencies['dagger-compiler']
+    kapt rootProject.ext.dependencies['dagger-compiler']
     implementation rootProject.ext.dependencies['logger']
     implementation rootProject.ext.dependencies['retrofit']
     implementation rootProject.ext.dependencies['retrofit-converter-gson']

@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 
 class HttpManager @Inject
-constructor(private val juheService: JUHEService) : HttpHelper {
+constructor(val juheService: JUHEService) : HttpHelper {
 
     override fun getJuheNews(type: String): Flowable<JUHENewsResponse<JUHENewsResponse.JUHENewsResponseResule<List<JUHENewsResponse.JUHENewsResponseData>>>> {
         return juheService.getJUHENews(type, JUHEService.API_BASE_URL)

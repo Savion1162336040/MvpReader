@@ -26,7 +26,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends SimpleActivi
     protected abstract void inject();
 
     protected ActivityComponent getComponent() {
-        return DaggerActivityComponent.builder().appComponent(MvpApplication.createAppComponent()).activityModule(getModule()).build();
+        return DaggerActivityComponent.builder().applicationComponent(MvpApplication.createComponent()).activityModule(getModule()).build();
     }
 
     protected ActivityModule getModule() {
@@ -36,7 +36,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends SimpleActivi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter.attachView(this);
     }
 
     @Override

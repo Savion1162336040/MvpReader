@@ -43,7 +43,7 @@ ext {
             //butterknife
             "butterknife"             : "com.jakewharton:butterknife:${version.butterknife}",
             "butterknife_compiler"    : "com.jakewharton:butterknife-compiler:${version.butterknife}",
-            "logger"                  : "com.orhanobut:logger:1.15",
+            "logger"                  : "com.orhanobut:logger:2.2.0",
 
             "fragmentation"           : "me.yokeyword:fragmentation:0.10.4",
     ]

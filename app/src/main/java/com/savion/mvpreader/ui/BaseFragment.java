@@ -43,7 +43,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends SimpleFragme
     }
 
     protected FragmentComponet getComponent() {
-        return DaggerFragmentComponet.builder().appComponent(MvpApplication.createAppComponent()).fragmentModule(getModule()).build();
+        return DaggerFragmentComponet.builder().applicationComponent(MvpApplication.createComponent()).fragmentModule(getModule()).build();
     }
 
     protected abstract void inject();

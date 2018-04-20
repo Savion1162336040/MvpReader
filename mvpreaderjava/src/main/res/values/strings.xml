@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MvpReaderJava</string>
+    <string name="drawer_open_des">open</string>
+    <string name="drawer_close_des">close</string>
+</resources>
