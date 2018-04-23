@@ -17,13 +17,21 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/fragment_one_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways" />
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            app:subtitleTextColor="@color/white"
+            app:titleTextColor="@color/white" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/fragment_one_tablayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/white"
+            app:tabSelectedTextColor="@color/white"
+            android:background="@color/colorPrimaryDark"
+            app:tabTextColor="@color/white" />
 
     </android.support.design.widget.AppBarLayout>
 

@@ -7,13 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.mvpreaderjava.R;
-import com.example.mvpreaderjava.ui.base.BaseFragment;
+import com.example.mvpreaderjava.ui.base.SimpleFragment;
 
 /**
  * Created by sw116 on 2018/4/20.
  */
 
-public abstract class BaseMainFragment extends BaseFragment {
+public abstract class BaseMainFragment extends SimpleFragment {
 
     protected FragmentCallback fragmentCallback;
     protected AppCompatActivity appCompatActivity;
@@ -41,7 +41,7 @@ public abstract class BaseMainFragment extends BaseFragment {
         fragmentCallback.getDrawer().addDrawerListener(mDrawerToggle);
     }
 
-    interface FragmentCallback {
+    public interface FragmentCallback {
         void openDrawer(boolean open);
 
         DrawerLayout getDrawer();

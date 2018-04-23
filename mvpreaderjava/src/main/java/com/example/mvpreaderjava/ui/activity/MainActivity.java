@@ -1,5 +1,6 @@
 package com.example.mvpreaderjava.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
@@ -14,28 +15,32 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.mvpreaderjava.R;
 import com.example.mvpreaderjava.ui.base.SimpleActivity;
 import com.example.mvpreaderjava.ui.bind.OnNavigationSelected;
+import com.example.mvpreaderjava.ui.fragment.BaseMainFragment;
 import com.example.mvpreaderjava.ui.fragment.ListFragmentOne;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by sw116 on 2018/4/19.
  */
 
-public class MainActivity extends SimpleActivity {
+public class MainActivity extends SimpleActivity implements BaseMainFragment.FragmentCallback, NavigationView.OnNavigationItemSelectedListener {
     @BindView(R.id.main_drawer)
     DrawerLayout drawerLayout;
     @BindView(R.id.main_framelayout)
@@ -69,10 +74,13 @@ public class MainActivity extends SimpleActivity {
         fragmentNews = ListFragmentOne.newInstance("FragmentNews");
         showFragment = fragmentImg;
         hideFragment = null;
+        navigationView.setCheckedItem(R.id.main_drawer_action_pic);
+        loadMultipleRootFragment(R.id.main_framelayout, 0, fragmentImg, fragmentNews);
     }
 
     @Override
     protected void onViewCreated() {
+        navigationView.setNavigationItemSelectedListener(this);
         initFragment();
         synsFragmentState(fragmentImg);
 //        setSupportActionBar(toolbar);
@@ -95,11 +103,11 @@ public class MainActivity extends SimpleActivity {
      */
     private void synsFragmentState(SupportFragment thisFragment) {
         showFragment = thisFragment;
-        showHideFragment(showFragment, hideFragment);
+        showHideFragment(showFragment);
         hideFragment = showFragment;
     }
 
-    @OnNavigationSelected(value = {R.id.main_navigation})
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.main_drawer_action_pic:
@@ -109,7 +117,8 @@ public class MainActivity extends SimpleActivity {
                 synsFragmentState(fragmentNews);
                 break;
             case R.id.main_drawer_action_coming:
-                showToast("coming soon...");
+                //showToast("coming soon...");
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
         }
         drawerLayout.closeDrawer(Gravity.LEFT);
@@ -119,6 +128,19 @@ public class MainActivity extends SimpleActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void openDrawer(boolean open) {
+        if (open)
+            drawerLayout.openDrawer(Gravity.LEFT);
+        else
+            drawerLayout.closeDrawer(Gravity.LEFT);
+    }
+
+    @Override
+    public DrawerLayout getDrawer() {
+        return drawerLayout;
     }
 
     class MyPageAdapter extends FragmentPagerAdapter {

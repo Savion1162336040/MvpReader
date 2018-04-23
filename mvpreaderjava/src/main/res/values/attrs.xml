@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SunnyView">
+        <attr name="sunnyColor" format="color"></attr>
+        <attr name="sunnyColorYellow" format="color"></attr>
+    </declare-styleable>
+</resources>
