@@ -3,7 +3,14 @@
     <string name="drawer_open_des">open</string>
     <string name="drawer_close_des">close</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="app_discribe">MvpReader:focus on you read experience</string>
 
+    <string name="empty_message">啥也没有</string>
+    <string name="loading_message">请等一等啦ლ(╹◡╹ლ)</string>
+    <string name="error_message">哎呀！发生了一些错误</string>
+    <string name="empty_button">重试</string>
+    <string name="loading_button">取消</string>
+    <string name="error_button">重试</string>
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
@@ -75,4 +82,7 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

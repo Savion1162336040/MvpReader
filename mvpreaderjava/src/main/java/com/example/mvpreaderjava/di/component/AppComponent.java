@@ -3,6 +3,8 @@ package com.example.mvpreaderjava.di.component;
 import com.example.mvpreaderjava.MyApplication;
 import com.example.mvpreaderjava.di.module.AppModule;
 import com.example.mvpreaderjava.di.module.HttpModule;
+import com.example.mvpreaderjava.modle.DataManager;
+import com.example.mvpreaderjava.modle.helper.HttpManager;
 
 import javax.inject.Singleton;
 
@@ -17,5 +19,8 @@ public interface AppComponent {
 
     MyApplication getApp();
 
+    DataManager getDataManager(); //数据中心
+
+    HttpManager getHttpManager();//api接口
 
 }

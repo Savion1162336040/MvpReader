@@ -13,5 +13,7 @@ public interface BaseView {
     void error();
     //显示加载完成页面
     void content();
+    void empty();
+    void complete();
 
 }

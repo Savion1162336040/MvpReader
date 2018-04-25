@@ -3,7 +3,8 @@ package com.example.mvpreaderjava.di.module;
 import com.example.mvpreaderjava.Constant;
 import com.example.mvpreaderjava.SystemUtil;
 import com.example.mvpreaderjava.di.qualifier.JuheUrl;
-import com.example.mvpreaderjava.modle.helper.JUHEService;
+import com.example.mvpreaderjava.modle.api.JUHEService;
+import com.example.mvpreaderjava.modle.helper.HttpHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -86,15 +87,11 @@ public class HttpModule {
         return builder.build();
     }
 
-    /**
-     * 提供聚合数据接口service
-     * @param retrofit
-     * @return
-     */
-    @Provides
-    @Singleton
-    public JUHEService provideJUHEService(@JuheUrl Retrofit retrofit) {
-        return retrofit.create(JUHEService.class);
+    public Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
+        return builder.baseUrl(url).
+                addConverterFactory(GsonConverterFactory.create()).
+                addCallAdapterFactory(RxJava2CallAdapterFactory.create()).
+                client(client).build();
     }
 
     @Provides
@@ -104,11 +101,15 @@ public class HttpModule {
         return provideRetrofit(builder, client, JUHEService.API_BASE_URL);
     }
 
-    public Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
-        return builder.baseUrl(url).
-                addConverterFactory(GsonConverterFactory.create()).
-                addCallAdapterFactory(RxJava2CallAdapterFactory.create()).
-                client(client).build();
+    /**
+     * 提供聚合数据接口service
+     *
+     * @param retrofit
+     * @return
+     */
+    @Provides
+    @Singleton
+    public JUHEService provideJUHEService(@JuheUrl Retrofit retrofit) {
+        return retrofit.create(JUHEService.class);
     }
-
 }

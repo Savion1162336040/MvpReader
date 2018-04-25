@@ -1,7 +1,12 @@
 package com.example.mvpreaderjava.di.module;
 
 import com.example.mvpreaderjava.MyApplication;
+import com.example.mvpreaderjava.modle.DataManager;
 import com.example.mvpreaderjava.modle.helper.HttpHelper;
+import com.example.mvpreaderjava.modle.helper.HttpManager;
+import com.google.gson.Gson;
+
+import java.security.PublicKey;
 
 import javax.inject.Singleton;
 
@@ -26,4 +31,21 @@ public class AppModule {
         return application;
     }
 
+    @Provides
+    @Singleton
+    public Gson provideGson() {
+        return new Gson();
+    }
+
+    @Provides
+    @Singleton
+    public HttpHelper provideHttpHelper(HttpManager manager) {
+        return manager;
+    }
+
+    @Provides
+    @Singleton
+    public DataManager provideDataManager(HttpHelper manager) {
+        return new DataManager(manager);
+    }
 }

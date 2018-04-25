@@ -1,4 +1,9 @@
-package com.example.mvpreaderjava.modle.helper;
+package com.example.mvpreaderjava.modle.api;
+
+
+import com.example.mvpreaderjava.modle.bean.JUHENewsData;
+import com.example.mvpreaderjava.modle.bean.JUHENewsResponse;
+import com.example.mvpreaderjava.modle.bean.JUHENewsResult;
 
 import java.util.List;
 
@@ -18,7 +23,7 @@ public interface JUHEService {
      * 获取头条新闻
      */
     @GET("toutiao/index")
-    Flowable<JUHENewsResponse<JUHENewsResponse.Result<JUHENewsResponse.Data>>> getJuheNews(@Query(value = "type") String type, @Query(value = "key") String key);
+    Flowable<JUHENewsResponse<JUHENewsResult<List<JUHENewsData>>>> getJuheNews(@Query(value = "type") String type, @Query(value = "key") String key);
 
 
 }

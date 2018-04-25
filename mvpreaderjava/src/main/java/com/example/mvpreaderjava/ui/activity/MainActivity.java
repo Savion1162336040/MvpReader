@@ -27,6 +27,7 @@ import com.example.mvpreaderjava.R;
 import com.example.mvpreaderjava.ui.base.SimpleActivity;
 import com.example.mvpreaderjava.ui.bind.OnNavigationSelected;
 import com.example.mvpreaderjava.ui.fragment.BaseMainFragment;
+import com.example.mvpreaderjava.ui.fragment.JUHENewsMainFragment;
 import com.example.mvpreaderjava.ui.fragment.ListFragmentOne;
 
 import java.util.ArrayList;
@@ -49,7 +50,6 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
     NavigationView navigationView;
 
     SupportFragment fragmentImg;
-    SupportFragment fragmentNews;
 
     SupportFragment showFragment;
     SupportFragment hideFragment;
@@ -70,12 +70,12 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
     }
 
     private void initFragment() {
-        fragmentImg = ListFragmentOne.newInstance("FragmentImg");
-        fragmentNews = ListFragmentOne.newInstance("FragmentNews");
+        fragmentImg = JUHENewsMainFragment.newInstance("juhe");
+        //fragmentNews = ListFragmentOne.newInstance("FragmentNews");
         showFragment = fragmentImg;
         hideFragment = null;
         navigationView.setCheckedItem(R.id.main_drawer_action_pic);
-        loadMultipleRootFragment(R.id.main_framelayout, 0, fragmentImg, fragmentNews);
+        loadMultipleRootFragment(R.id.main_framelayout, 0, fragmentImg);
     }
 
     @Override
@@ -83,17 +83,6 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
         navigationView.setNavigationItemSelectedListener(this);
         initFragment();
         synsFragmentState(fragmentImg);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_more);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open_des, R.string.drawer_close_des);
-//        drawerToggle.syncState();
-//        drawerLayout.addDrawerListener(drawerToggle);
-//
-//        tabLayout.setupWithViewPager(viewPager);
-
-//        viewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager()));
-
     }
 
     /**
@@ -103,7 +92,7 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
      */
     private void synsFragmentState(SupportFragment thisFragment) {
         showFragment = thisFragment;
-        showHideFragment(showFragment);
+        showHideFragment(showFragment, hideFragment);
         hideFragment = showFragment;
     }
 
@@ -114,11 +103,10 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
                 synsFragmentState(fragmentImg);
                 break;
             case R.id.main_drawer_action_news:
-                synsFragmentState(fragmentNews);
+                showToast("coming soon...");
                 break;
             case R.id.main_drawer_action_coming:
-                //showToast("coming soon...");
-                startActivity(new Intent(this, SettingsActivity.class));
+                showToast("coming soon...");
                 break;
         }
         drawerLayout.closeDrawer(Gravity.LEFT);

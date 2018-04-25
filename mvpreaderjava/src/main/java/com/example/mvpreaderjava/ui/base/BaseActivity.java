@@ -1,6 +1,10 @@
 package com.example.mvpreaderjava.ui.base;
 
 
+import com.example.mvpreaderjava.MyApplication;
+import com.example.mvpreaderjava.di.component.ActivityComponent;
+import com.example.mvpreaderjava.di.component.DaggerActivityComponent;
+import com.example.mvpreaderjava.di.module.ActivityModule;
 import com.example.mvpreaderjava.mvp.BasePresenter;
 
 import javax.inject.Inject;
@@ -12,6 +16,14 @@ import javax.inject.Inject;
 public abstract class BaseActivity<P extends BasePresenter> extends SimpleActivity {
     @Inject
     P mPresenter;
+
+    protected ActivityComponent getComponent() {
+        return DaggerActivityComponent.builder().appComponent(MyApplication.instance.createComponent()).activityModule(getModule()).build();
+    }
+
+    protected ActivityModule getModule() {
+        return new ActivityModule(mActivity);
+    }
 
     @Override
     protected void onViewCreated() {

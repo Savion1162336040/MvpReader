@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="juhe_tab">
+        <item>{\"title\":\"头条\",\"type\":\"top\"}</item>
+        <item>{\"title\":\"社会\",\"type\":\"shehui\"}</item>
+        <item>{\"title\":\"国内\",\"type\":\"guonei\"}</item>
+        <item>{\"title\":\"国际\",\"type\":\"guoji\"}</item>
+        <item>{\"title\":\"娱乐\",\"type\":\"yule\"}</item>
+        <item>{\"title\":\"体育\",\"type\":\"tiyu\"}</item>
+        <item>{\"title\":\"科技\",\"type\":\"keji\"}</item>
+        <item>{\"title\":\"军事\",\"type\":\"junshi\"}</item>
+        <item>{\"title\":\"财经\",\"type\":\"caijing\"}</item>
+        <item>{\"title\":\"时尚\",\"type\":\"shishang\"}</item>
+    </string-array>
+
+</resources>

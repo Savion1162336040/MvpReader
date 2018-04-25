@@ -9,14 +9,19 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <com.example.mvpreaderjava.ui.widget.SunnyView
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:padding="10dp"
-        android:text="Savion"
-        app:sunnyColor="?attr/sunnyColorYellow" />
+        android:text="@string/app_discribe"
+        android:textColor="@color/white"
+        android:textSize="@dimen/content_size" />
 
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.mvpreaderjava.R;
+import com.example.mvpreaderjava.ui.base.BaseFragment;
 import com.example.mvpreaderjava.ui.base.SimpleFragment;
 
 /**

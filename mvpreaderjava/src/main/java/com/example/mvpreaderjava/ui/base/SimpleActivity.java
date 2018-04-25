@@ -44,16 +44,30 @@ public abstract class SimpleActivity extends SupportActivity implements BaseView
 
     @Override
     public void error() {
-
+        showToast("error");
     }
 
     @Override
     public void loading() {
+        showToast("loading");
 
     }
 
     @Override
     public void content() {
+        showToast("content");
+
+    }
+
+    @Override
+    public void empty() {
+        showToast("empty");
+
+    }
+
+    @Override
+    public void complete() {
+        showToast("complete");
 
     }
 
