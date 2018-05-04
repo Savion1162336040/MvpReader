@@ -1,34 +1,26 @@
 package com.example.mvpreaderjava.ui.activity;
 
-import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.mvpreaderjava.R;
+import com.example.mvpreaderjava.RxJavaTest;
 import com.example.mvpreaderjava.ui.base.SimpleActivity;
-import com.example.mvpreaderjava.ui.bind.OnNavigationSelected;
 import com.example.mvpreaderjava.ui.fragment.BaseMainFragment;
 import com.example.mvpreaderjava.ui.fragment.JUHENewsMainFragment;
 import com.example.mvpreaderjava.ui.fragment.ListFragmentOne;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +40,7 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
     FrameLayout frameLayout;
     @BindView(R.id.main_navigation)
     NavigationView navigationView;
+    RxJavaTest rxJavaTest = new RxJavaTest();
 
     SupportFragment fragmentImg;
 
@@ -108,10 +101,46 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
             case R.id.main_drawer_action_coming:
                 showToast("coming soon...");
                 break;
+            case R.id.main_drawer_action_activities:
+                getPackageinfo(PackageManager.GET_ACTIVITIES);
+                break;
+            case R.id.main_drawer_action_filter:
+                getPackageinfo(PackageManager.GET_INTENT_FILTERS);
+                break;
+            case R.id.main_drawer_action_instrumentation:
+                getPackageinfo(PackageManager.GET_INSTRUMENTATION);
+                break;
+            case R.id.main_drawer_action_providers:
+                getPackageinfo(PackageManager.GET_PROVIDERS);
+                break;
+            case R.id.main_drawer_action_receivers:
+                getPackageinfo(PackageManager.GET_RECEIVERS);
+                break;
+            case R.id.main_drawer_action_signatures:
+                getPackageinfo(PackageManager.GET_SIGNATURES);
+                break;
+            case R.id.main_drawer_action_flatmap:
+                rxJavaTest.flatMap();
+                break;
+            case R.id.main_drawer_action_concatmap:
+                rxJavaTest.concatMap();
+                break;
         }
         drawerLayout.closeDrawer(Gravity.LEFT);
         return true;
     }
+
+    private void getPackageinfo(int flag){
+        PackageManager packageManager = getPackageManager();
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(getPackageName(),flag);
+            Logger.wtf("getPackageInfo success:%s",packageInfo.toString());
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            Logger.e("getPackageInfo Exception:%s",e.getMessage());
+        }
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -3,29 +3,14 @@ package com.example.mvpreaderjava.mvp.presenter;
 import com.example.mvpreaderjava.CommomSubscriber;
 import com.example.mvpreaderjava.RxUtils;
 import com.example.mvpreaderjava.modle.DataManager;
-import com.example.mvpreaderjava.modle.bean.JUHENewsData;
-import com.example.mvpreaderjava.modle.bean.JUHENewsResponse;
-import com.example.mvpreaderjava.modle.exception.ApiException;
-import com.example.mvpreaderjava.mvp.BaseView;
+import com.example.mvpreaderjava.modle.bean.JUHE.JUHENewsData;
 import com.example.mvpreaderjava.mvp.RxPresenter;
 import com.example.mvpreaderjava.mvp.contract.JUHEContract;
-import com.orhanobut.logger.Logger;
-
-import org.reactivestreams.Publisher;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
-
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.FlowableOnSubscribe;
-import io.reactivex.FlowableTransformer;
-import io.reactivex.functions.Function;
-import io.reactivex.subscribers.ResourceSubscriber;
-import retrofit2.HttpException;
 
 /**
  * Created by sw116 on 2018/4/24.

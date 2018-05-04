@@ -1,8 +1,6 @@
 package com.example.mvpreaderjava.mvp.contract;
 
-import com.example.mvpreaderjava.modle.bean.JUHENewsData;
-import com.example.mvpreaderjava.modle.bean.JUHENewsResponse;
-import com.example.mvpreaderjava.modle.bean.JUHENewsResult;
+import com.example.mvpreaderjava.modle.bean.JUHE.JUHENewsData;
 import com.example.mvpreaderjava.mvp.BasePresenter;
 import com.example.mvpreaderjava.mvp.BaseView;
 

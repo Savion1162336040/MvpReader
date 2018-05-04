@@ -33,5 +33,14 @@
             app:isRemote="false"
             app:tag="news"
             app:target="" />
+        <item
+            android:id="@+id/main_drawer_action_flatmap"
+            android:checked="true"
+            android:icon="@drawable/ic_image"
+            android:title="flatmap"
+            app:id="1"
+            app:isRemote="false"
+            app:tag="news"
+            app:target="" />
     </group>
 </menu>

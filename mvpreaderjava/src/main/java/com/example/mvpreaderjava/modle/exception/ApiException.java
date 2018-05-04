@@ -5,11 +5,19 @@ package com.example.mvpreaderjava.modle.exception;
  * 本地api错误
  */
 public class ApiException extends RuntimeException {
-    public ApiException(){
+    private int code;
+
+    public ApiException() {
         super();
     }
 
-    public ApiException(String msg){
+    public ApiException(String msg) {
+
         super(msg);
+    }
+
+    public ApiException(int code, String msg) {
+        super(msg);
+        this.code = code;
     }
 }

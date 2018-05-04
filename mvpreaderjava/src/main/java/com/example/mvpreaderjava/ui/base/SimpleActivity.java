@@ -71,6 +71,16 @@ public abstract class SimpleActivity extends SupportActivity implements BaseView
 
     }
 
+    @Override
+    public void progress() {
+
+    }
+
+    @Override
+    public void dismissProgress() {
+
+    }
+
     //获取视图ID
     protected abstract int getLayout();
 

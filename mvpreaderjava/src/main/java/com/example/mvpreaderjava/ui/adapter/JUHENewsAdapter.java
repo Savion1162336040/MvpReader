@@ -10,8 +10,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.mvpreaderjava.R;
-import com.example.mvpreaderjava.modle.bean.JUHENewsData;
-import com.example.mvpreaderjava.modle.bean.JUHENewsResponse;
+import com.example.mvpreaderjava.modle.bean.JUHE.JUHENewsData;
 import com.example.mvpreaderjava.ui.base.BaseViewHolder;
 
 import java.util.List;

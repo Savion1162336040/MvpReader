@@ -152,5 +152,15 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
         }
     }
 
+    @Override
+    public void progress() {
+
+    }
+
+    @Override
+    public void dismissProgress() {
+
+    }
+
     protected abstract int getLayout();
 }

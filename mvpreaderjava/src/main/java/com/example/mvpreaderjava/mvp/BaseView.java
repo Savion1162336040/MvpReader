@@ -16,4 +16,6 @@ public interface BaseView {
     void empty();
     void complete();
 
+    void progress();
+    void dismissProgress();
 }

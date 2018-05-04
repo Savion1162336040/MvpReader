@@ -1,20 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <group
-        android:id="@+id/main_draw_group_text"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/main_drawer_action_pic"
-            android:icon="@drawable/ic_image"
-            android:title="美图" />
-        <item
-            android:id="@+id/main_drawer_action_news"
-            android:icon="@drawable/ic_share"
-            android:title="分享" />
-        <item
-            android:id="@+id/main_drawer_action_coming"
-            android:icon="@drawable/ic_more"
-            android:title="更多" />
-    </group>
+    <item
+        android:id="@+id/menu_main"
+        android:title="menu_main">
+        <menu>
+            <item
+                android:id="@+id/main_drawer_action_pic"
+                android:icon="@drawable/ic_image"
+                android:title="美图" />
+            <item
+                android:id="@+id/main_drawer_action_news"
+                android:icon="@drawable/ic_share"
+                android:title="分享" />
+            <item
+                android:id="@+id/main_drawer_action_coming"
+                android:icon="@drawable/ic_more"
+                android:title="更多" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_option"
+        android:title="menu_option">
+        <menu>
+            <item
+                android:id="@+id/main_drawer_action_activities"
+                android:icon="@drawable/ic_error"
+                android:title="GET_ACTIVITIES" />
+            <item
+                android:id="@+id/main_drawer_action_receivers"
+                android:icon="@drawable/ic_error"
+                android:title="GET_RECEIVERS" />
+            <item
+                android:id="@+id/main_drawer_action_services"
+                android:icon="@drawable/ic_error"
+                android:title="GET_SERVICES" />
+            <item
+                android:id="@+id/main_drawer_action_providers"
+                android:icon="@drawable/ic_error"
+                android:title="GET_PROVIDERS" />
+            <item
+                android:id="@+id/main_drawer_action_instrumentation"
+                android:icon="@drawable/ic_error"
+                android:title="GET_INSTRUMENTATION" />
+            <item
+                android:id="@+id/main_drawer_action_filter"
+                android:icon="@drawable/ic_error"
+                android:title="GET_INTENT_FILTERS" />
+            <item
+                android:id="@+id/main_drawer_action_signatures"
+                android:icon="@drawable/ic_error"
+                android:title="GET_SIGNATURES" />
+            <item
+                android:id="@+id/main_drawer_action_flatmap"
+                android:icon="@drawable/ic_error"
+                android:title="flatMap" />
+            <item
+                android:id="@+id/main_drawer_action_concatmap"
+                android:icon="@drawable/ic_error"
+                android:title="concatMap" />
+        </menu>
+    </item>
 </menu>

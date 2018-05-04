@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.savion.mvpreader.R;
+import com.savion.mvpreader.RxJavaTest;
 import com.savion.mvpreader.model.bean.Tab;
 import com.savion.mvpreader.contract.MainActivityContract;
 import com.savion.mvpreader.presenter.MainActivityPresenter;
@@ -60,8 +61,18 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
     @OnNavigationSelected(R.id.main_drawer_navigation)
     boolean onNavigationSelected(MenuItem item) {
         item.setChecked(true);
-        transforFragment(item.getTitle().toString());
         drawerLayout.closeDrawers();
+        switch (item.getItemId()){
+            case R.id.main_drawer_action_flatmap:
+                RxJavaTest test = new RxJavaTest();
+                test.flatMap();
+                break;
+            case R.id.main_drawer_action_news:
+            case R.id.main_drawer_action_pic:
+            case R.id.main_drawer_action_coming:
+                transforFragment(item.getTitle().toString());
+                break;
+        }
         return true;
     }
 

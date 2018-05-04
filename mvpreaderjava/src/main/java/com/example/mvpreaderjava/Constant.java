@@ -1,5 +1,6 @@
 package com.example.mvpreaderjava;
 
+import android.content.pm.PackageManager;
 import android.os.Environment;
 
 import java.io.File;
@@ -19,6 +20,7 @@ public class Constant {
     public static final String CACHE_PATH = BASE_PATH+File.separator+"cache";
     //img path
     public static final String IMG_PATH = BASE_PATH+File.separator+"img";
+
 
 
 

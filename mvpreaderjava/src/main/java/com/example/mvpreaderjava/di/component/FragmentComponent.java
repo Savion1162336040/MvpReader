@@ -3,6 +3,7 @@ package com.example.mvpreaderjava.di.component;
 import com.example.mvpreaderjava.di.module.FragmentModule;
 import com.example.mvpreaderjava.di.scope.PerFragment;
 import com.example.mvpreaderjava.ui.fragment.JUHENewsContentFragment;
+import com.example.mvpreaderjava.ui.fragment.WanAndroidPostFragment;
 
 import dagger.Component;
 
@@ -13,4 +14,5 @@ import dagger.Component;
 @Component(modules = FragmentModule.class, dependencies = AppComponent.class)
 public interface FragmentComponent {
     void inject(JUHENewsContentFragment juheNewsContentFragment);
+    void inject(WanAndroidPostFragment wanAndroidPostFragment);
 }

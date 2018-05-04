@@ -29,6 +29,14 @@ public class RxUtils {
             }
         };
     }
+    public <T> void test(){
+        new FlowableTransformer<T,T>(){
+            @Override
+            public Publisher<T> apply(Flowable<T> flowable) {
+                return null;
+            }
+        };
+    }
 
     //统一线程调度flowable.compose(commonScheduler())
     public static <T> ObservableTransformer<T, T> commonObserableScheduler() {

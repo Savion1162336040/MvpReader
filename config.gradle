@@ -18,6 +18,7 @@ ext {
     dependencies = [
             //support
             "support-v4"              : "com.android.support:support-v4:${version.support}",
+            "vector"                  : "com.android.support:support-vector-drawable:${version.support}",
             "appcompat-v7"            : "com.android.support:appcompat-v7:${version.support}",
             "design"                  : "com.android.support:design:${version.support}",
             "recyclerview-v7"         : "com.android.support:recyclerview-v7:${version.support}",
@@ -46,6 +47,8 @@ ext {
             "logger"                  : "com.orhanobut:logger:2.2.0",
 
             "fragmentation"           : "me.yokeyword:fragmentation:0.10.4",
+            //BRVAH增强RecyclerView ViewHolder
+            "BRVAH"                   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
     ]
 
 }

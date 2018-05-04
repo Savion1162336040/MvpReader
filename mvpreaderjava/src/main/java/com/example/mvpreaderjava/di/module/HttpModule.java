@@ -3,7 +3,9 @@ package com.example.mvpreaderjava.di.module;
 import com.example.mvpreaderjava.Constant;
 import com.example.mvpreaderjava.SystemUtil;
 import com.example.mvpreaderjava.di.qualifier.JuheUrl;
+import com.example.mvpreaderjava.di.qualifier.WanAndroidUrl;
 import com.example.mvpreaderjava.modle.api.JUHEService;
+import com.example.mvpreaderjava.modle.api.WanAndroidApi;
 import com.example.mvpreaderjava.modle.helper.HttpHelper;
 
 import java.io.File;
@@ -101,6 +103,13 @@ public class HttpModule {
         return provideRetrofit(builder, client, JUHEService.API_BASE_URL);
     }
 
+    @Provides
+    @WanAndroidUrl
+    @Singleton
+    public Retrofit provideWanAndroidRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        return provideRetrofit(builder, client, WanAndroidApi.BASE_API);
+    }
+
     /**
      * 提供聚合数据接口service
      *
@@ -111,5 +120,17 @@ public class HttpModule {
     @Singleton
     public JUHEService provideJUHEService(@JuheUrl Retrofit retrofit) {
         return retrofit.create(JUHEService.class);
+    }
+
+    /**
+     * 提供WanAndroid数据接口service
+     *
+     * @param retrofit
+     * @return
+     */
+    @Provides
+    @Singleton
+    public WanAndroidApi provideWanAndroidService(@WanAndroidUrl Retrofit retrofit) {
+        return retrofit.create(WanAndroidApi.class);
     }
 }

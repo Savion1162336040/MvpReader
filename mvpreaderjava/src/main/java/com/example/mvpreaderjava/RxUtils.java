@@ -1,17 +1,16 @@
 package com.example.mvpreaderjava;
 
-import com.example.mvpreaderjava.modle.bean.JUHENewsResponse;
-import com.example.mvpreaderjava.modle.bean.JUHENewsResult;
+import android.text.TextUtils;
+
+import com.example.mvpreaderjava.modle.bean.JUHE.JUHENewsResponse;
+import com.example.mvpreaderjava.modle.bean.JUHE.JUHENewsResult;
+import com.example.mvpreaderjava.modle.bean.wanAndroid.WanAndroidResponse;
 import com.example.mvpreaderjava.modle.exception.ApiException;
 
 import org.reactivestreams.Publisher;
 
-import java.util.List;
-
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -93,8 +92,10 @@ public class RxUtils {
         return upstream -> upstream.flatMap(rjuheNewsResponse -> {
             if (rjuheNewsResponse.success())
                 return createFlowable(rjuheNewsResponse.getResult());
-            else
-                return Flowable.error(new ApiException("get juhe news result error"));
+            else {
+                String msg = rjuheNewsResponse.getReason();
+                return Flowable.error(new ApiException(rjuheNewsResponse.getError_code(), TextUtils.isEmpty(msg) ? "聚合数据服务端异常" : msg));
+            }
         });
     }
 
@@ -106,15 +107,34 @@ public class RxUtils {
      */
     public static <D> FlowableTransformer<JUHENewsResult<D>, D> handlerData() {
         return upstream -> upstream.flatMap(djuheNewsResult -> {
-            if (djuheNewsResult.success())
+            if (djuheNewsResult.success()) {
                 if (djuheNewsResult.getData() == null)
-                    return Flowable.error(new ApiException("get juhe news data null"));
+                    return Flowable.error(new ApiException("聚合数据DATA空"));
                 else
                     return createFlowable(djuheNewsResult.getData());
-            else
-                return Flowable.error(new ApiException("get juhe news data error"));
+            } else {
+                return Flowable.error(new ApiException(djuheNewsResult.getStat(), "聚合数据DATA异常"));
+            }
         });
     }
+
+    /**
+     * 统一处理wanAndroid结果
+     *
+     * @param <D>
+     * @return
+     */
+    public static <D> FlowableTransformer<WanAndroidResponse<D>, D> handlerWanAndroidData() {
+        return upstream -> upstream.flatMap(dWanAndroidResponse -> {
+            if (dWanAndroidResponse.success()) {
+                return createFlowable(dWanAndroidResponse.getData());
+            } else {
+                String resp_msg = dWanAndroidResponse.getErrorMsg();
+                return Flowable.error(new ApiException(dWanAndroidResponse.getErrorCode(), TextUtils.isEmpty(resp_msg) ? "WanAndroid服务端异常" : resp_msg));
+            }
+        });
+    }
+
 
     /**
      * 构造flowable<T>

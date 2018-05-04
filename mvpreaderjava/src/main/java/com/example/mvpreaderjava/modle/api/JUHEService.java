@@ -1,9 +1,9 @@
 package com.example.mvpreaderjava.modle.api;
 
 
-import com.example.mvpreaderjava.modle.bean.JUHENewsData;
-import com.example.mvpreaderjava.modle.bean.JUHENewsResponse;
-import com.example.mvpreaderjava.modle.bean.JUHENewsResult;
+import com.example.mvpreaderjava.modle.bean.JUHE.JUHENewsData;
+import com.example.mvpreaderjava.modle.bean.JUHE.JUHENewsResponse;
+import com.example.mvpreaderjava.modle.bean.JUHE.JUHENewsResult;
 
 import java.util.List;
 
