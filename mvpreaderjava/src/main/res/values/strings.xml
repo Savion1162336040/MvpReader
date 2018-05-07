@@ -68,6 +68,9 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+    <string-array name="show_item">
+        <item>不再显示</item>
+    </string-array>
 
     <string-array name="multi_select_list_preference_default_value" />
 

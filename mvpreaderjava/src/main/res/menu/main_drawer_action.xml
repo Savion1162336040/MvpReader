@@ -59,6 +59,14 @@
                 android:id="@+id/main_drawer_action_concatmap"
                 android:icon="@drawable/ic_error"
                 android:title="concatMap" />
+            <item
+                android:id="@+id/main_drawer_action_dialo"
+                android:icon="@drawable/ic_error"
+                android:title="dialog" />
+            <item
+                android:id="@+id/main_drawer_action_test"
+                android:icon="@drawable/ic_error"
+                android:title="test" />
         </menu>
     </item>
 </menu>

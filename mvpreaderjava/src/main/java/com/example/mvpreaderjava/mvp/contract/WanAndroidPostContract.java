@@ -1,7 +1,11 @@
 package com.example.mvpreaderjava.mvp.contract;
 
+import com.example.mvpreaderjava.modle.bean.wanAndroid.WanAndroidBanner;
+import com.example.mvpreaderjava.modle.bean.wanAndroid.WanAndroidPost;
 import com.example.mvpreaderjava.mvp.BasePresenter;
 import com.example.mvpreaderjava.mvp.BaseView;
+
+import java.util.List;
 
 /**
  * Created by sw116 on 2018/5/3.
@@ -12,10 +16,12 @@ public class WanAndroidPostContract {
         void refresh();
         //加载更多
         void loadMore();
+        void showData(List<WanAndroidPost> data);
+        void showBanner(List<WanAndroidBanner> banners);
         //加入收藏
-        void collected();
+        void collected(int id);
         //取消收藏
-        void unCollected();
+        void unCollected(int id);
     }
 
     public interface Presenter<V extends BaseView> extends BasePresenter<V> {

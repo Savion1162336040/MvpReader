@@ -1,7 +1,13 @@
 package com.example.mvpreaderjava.ui.activity;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,24 +15,29 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatDialog;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.mvpreaderjava.R;
-import com.example.mvpreaderjava.RxJavaTest;
 import com.example.mvpreaderjava.ui.base.SimpleActivity;
 import com.example.mvpreaderjava.ui.fragment.BaseMainFragment;
 import com.example.mvpreaderjava.ui.fragment.JUHENewsMainFragment;
 import com.example.mvpreaderjava.ui.fragment.ListFragmentOne;
+import com.example.mvpreaderjava.ui.fragment.WanAndroidMainFragment;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.OnClick;
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -40,9 +51,9 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
     FrameLayout frameLayout;
     @BindView(R.id.main_navigation)
     NavigationView navigationView;
-    RxJavaTest rxJavaTest = new RxJavaTest();
 
     SupportFragment fragmentImg;
+    SupportFragment fragmentWanA;
 
     SupportFragment showFragment;
     SupportFragment hideFragment;
@@ -64,11 +75,13 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
 
     private void initFragment() {
         fragmentImg = JUHENewsMainFragment.newInstance("juhe");
+        fragmentWanA = WanAndroidMainFragment.newInstance();
+
         //fragmentNews = ListFragmentOne.newInstance("FragmentNews");
         showFragment = fragmentImg;
         hideFragment = null;
         navigationView.setCheckedItem(R.id.main_drawer_action_pic);
-        loadMultipleRootFragment(R.id.main_framelayout, 0, fragmentImg);
+        loadMultipleRootFragment(R.id.main_framelayout, 0, fragmentImg,fragmentWanA);
     }
 
     @Override
@@ -89,6 +102,38 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
         hideFragment = showFragment;
     }
 
+    private String NOTIFICATION_CHANNEL_ID = "1223";
+    private String NOTIFICATION_CHANNEL_NAME = "LIMIT_WARNING";
+
+    private void createNotification() {
+        NotificationManager notificationManagerCompat = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.enableLights(true);
+            channel.setLightColor(Color.RED);
+            channel.enableVibration(true);
+            notificationManagerCompat.createNotificationChannel(channel);
+            builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        } else {
+            builder = new NotificationCompat.Builder(this);
+        }
+        builder.setContentText("what you want to say");
+        builder.setContentTitle("tip");
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+        builder.setSmallIcon(R.drawable.ic_empty);
+        builder.setWhen(System.currentTimeMillis());
+        builder.setDefaults(Notification.DEFAULT_VIBRATE);
+        builder.setTicker("first to show");
+        notificationManagerCompat.notify(0x100, builder.build());
+    }
+
+    private void createDialog() {
+        AppCompatDialog dialog = new AppCompatDialog(this);
+        dialog.setTitle("tip");
+        dialog.show();
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -97,6 +142,7 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
                 break;
             case R.id.main_drawer_action_news:
                 showToast("coming soon...");
+                synsFragmentState(fragmentWanA);
                 break;
             case R.id.main_drawer_action_coming:
                 showToast("coming soon...");
@@ -120,24 +166,24 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
                 getPackageinfo(PackageManager.GET_SIGNATURES);
                 break;
             case R.id.main_drawer_action_flatmap:
-                rxJavaTest.flatMap();
                 break;
             case R.id.main_drawer_action_concatmap:
-                rxJavaTest.concatMap();
+                break;
+            case R.id.main_drawer_action_dialo:
                 break;
         }
         drawerLayout.closeDrawer(Gravity.LEFT);
         return true;
     }
 
-    private void getPackageinfo(int flag){
+    private void getPackageinfo(int flag) {
         PackageManager packageManager = getPackageManager();
         try {
-            PackageInfo packageInfo = packageManager.getPackageInfo(getPackageName(),flag);
-            Logger.wtf("getPackageInfo success:%s",packageInfo.toString());
+            PackageInfo packageInfo = packageManager.getPackageInfo(getPackageName(), flag);
+            Logger.wtf("getPackageInfo success:%s", packageInfo.toString());
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            Logger.e("getPackageInfo Exception:%s",e.getMessage());
+            Logger.e("getPackageInfo Exception:%s", e.getMessage());
         }
     }
 

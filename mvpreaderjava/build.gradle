@@ -50,4 +50,5 @@ dependencies {
     implementation rootProject.ext.dependencies['rxpermissions']
     implementation rootProject.ext.dependencies['fragmentation']
     implementation rootProject.ext.dependencies['BRVAH']
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 }
