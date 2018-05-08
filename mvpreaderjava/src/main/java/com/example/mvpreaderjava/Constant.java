@@ -5,6 +5,7 @@ import android.os.Environment;
 
 import java.io.File;
 
+
 /**
  * Created by Administrator on 2017-12-29.
  */
@@ -20,6 +21,9 @@ public class Constant {
     public static final String CACHE_PATH = BASE_PATH+File.separator+"cache";
     //img path
     public static final String IMG_PATH = BASE_PATH+File.separator+"img";
+
+
+    public static final String INTENT_KEY = "intent_key";
 
 
 

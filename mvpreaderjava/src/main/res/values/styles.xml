@@ -26,4 +26,28 @@
         <item name="tabTextColor">?android:attr/textColorPrimary</item>
         <item name="tabSelectedTextColor">?android:attr/textColorPrimary</item>
     </style>
+    <!--自定义dialog style-->
+    <style name="dialogStyle" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+    </style>
+    <!--自定义加载旋转进度图形-->
+    <style name="blueCircleProgressBar" parent="Base.Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/anim_blue_progress</item>
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">2000</item>
+    </style>
+
+    <style name="whiteCircleProgressBar" parent="Base.Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/anim_white_progress</item>
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">2000</item>
+    </style>
 </resources>

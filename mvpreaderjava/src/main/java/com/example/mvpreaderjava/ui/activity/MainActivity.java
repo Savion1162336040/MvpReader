@@ -141,7 +141,6 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
                 synsFragmentState(fragmentImg);
                 break;
             case R.id.main_drawer_action_news:
-                showToast("coming soon...");
                 synsFragmentState(fragmentWanA);
                 break;
             case R.id.main_drawer_action_coming:

@@ -54,8 +54,8 @@ public class WanAndroidMainFragment extends BaseMainFragment {
      * @return A new instance of fragment JUHENewsMainFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static JUHENewsMainFragment newInstance() {
-        JUHENewsMainFragment fragment = new JUHENewsMainFragment();
+    public static WanAndroidMainFragment newInstance() {
+        WanAndroidMainFragment fragment = new WanAndroidMainFragment();
         return fragment;
     }
 
@@ -68,11 +68,12 @@ public class WanAndroidMainFragment extends BaseMainFragment {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new WanAndroidPostFragment());
         viewPager.setAdapter(new TabAdapter(getChildFragmentManager(), fragments, tabs));
+
     }
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_juhenews_main;
+        return R.layout.fragment_wan_android_main;
     }
 
     class TabAdapter extends FragmentPagerAdapter {

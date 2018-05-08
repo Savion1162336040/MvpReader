@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.mvpreaderjava.mvp.BaseView;
 import com.example.mvpreaderjava.ui.widget.EmptyLayout;
+import com.orhanobut.logger.Logger;
 
 import java.io.Serializable;
 
@@ -114,7 +115,6 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
 
     @Override
     public void loading() {
-        showToast("loading");
         if (emptyLayout != null) {
             emptyLayout.showLoading();
         }
@@ -130,7 +130,6 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
 
     @Override
     public void content() {
-        showToast("content");
         if (emptyLayout != null) {
             emptyLayout.hide();
         }
@@ -138,7 +137,6 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
 
     @Override
     public void empty() {
-        showToast("empty");
         if (emptyLayout != null) {
             emptyLayout.showEmpty();
         }
@@ -146,7 +144,7 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
 
     @Override
     public void complete() {
-        showToast("complete");
+        Logger.d("state complete");
         if (emptyLayout != null) {
             emptyLayout.hide();
         }

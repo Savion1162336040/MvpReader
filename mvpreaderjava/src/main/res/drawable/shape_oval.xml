@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    >
+    <size android:width="50dp"
+        android:height="50dp"
+        />
+    <padding android:bottom="5dp"
+        android:top="5dp"/>
+    <corners android:radius="0dp" />
+    <!--type 分为linear,radial,sweep三种,-->
+    <!--radial必须和gradientRadius一起出现，表示放射渐变的半径-->
+    <!--angle须要和linear一起使用，表示渐变的角度，以45的倍数出现，分别表示不同的方向-->
+    <!--sweep 表示扫描性渐变-->
+    <!--center x ,center y表示中心点的位置，用%表示-->
+    <gradient
+        android:angle="180"
+        android:endColor="#ABABAB"
+        android:startColor="#ffffff"
+        android:centerColor="#EDEDED"
+        android:gradientRadius="20dp"
+        android:type="radial"
+        android:centerX="50%"
+        android:centerY="50%"
+        android:useLevel="false" />
+
+    <stroke
+        android:dashGap="2dp"
+        android:dashWidth="2dp"
+        android:width="1dp"
+        android:color="#55ffff" />
+</shape>

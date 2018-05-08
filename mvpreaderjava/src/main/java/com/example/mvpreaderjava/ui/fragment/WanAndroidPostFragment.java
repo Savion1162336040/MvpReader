@@ -27,7 +27,7 @@ import io.reactivex.Observable;
  * Created by sw116 on 2018/5/3.
  */
 
-public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostPresenter> implements WanAndroidPostContract.View, BaseQuickAdapter.OnItemChildClickListener, BaseQuickAdapter.OnItemClickListener {
+public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostPresenter> implements WanAndroidPostContract.View, BaseQuickAdapter.OnItemChildClickListener, BaseQuickAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.post_recycler)
     protected RecyclerView recyclerView;
@@ -47,6 +47,7 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUpEmptyLayout(emptyLayout);
+        refreshLayout.setOnRefreshListener(this);
     }
 
     @Override
@@ -56,6 +57,7 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
         adapter = new HomePostAdapter(R.layout.adapter_wan_android_home_post, posts);
         adapter.setOnItemChildClickListener(this);
         adapter.setOnItemClickListener(this);
+        recyclerView.setAdapter(adapter);
         mPresenter.getBanner();
         mPresenter.getPostList(0);
     }
@@ -67,7 +69,8 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
 
     @Override
     public void refresh() {
-        refreshLayout.setRefreshing(true);
+        mPresenter.getBanner();
+        mPresenter.getPostList(0);
     }
 
     @Override
@@ -76,6 +79,7 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
 
     @Override
     public void showData(List<WanAndroidPost> data) {
+        refreshLayout.setRefreshing(false);
         posts.addAll(data);
         adapter.notifyDataSetChanged();
     }
@@ -134,5 +138,10 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
+    }
+
+    @Override
+    public void onRefresh() {
+        refresh();
     }
 }
