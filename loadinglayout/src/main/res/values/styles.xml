@@ -10,6 +10,9 @@
         <item name="empty_text">empty</item>
         <item name="loading_text">loading...</item>
         <item name="text_size">15sp</item>
+        <item name="empty_image">@drawable/ic_empty</item>
+        <item name="error_image">@drawable/ic_warning</item>
+        <item name="loading_drawable">@drawable/ic_refresh</item>
     </style>
     
 </resources>
