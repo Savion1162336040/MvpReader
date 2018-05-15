@@ -1,1 +1,1 @@
-include ':app', ':mvpreaderjava', ':lib','navigationtest'
+include ':app', ':mvpreaderjava', ':lib', ':loadinglayout','navigationtest'

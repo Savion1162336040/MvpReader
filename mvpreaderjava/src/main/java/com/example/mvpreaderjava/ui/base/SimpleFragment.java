@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,9 @@ import android.widget.Toast;
 
 
 import com.example.mvpreaderjava.mvp.BaseView;
+import com.example.mvpreaderjava.ui.widget.DialogAlert;
 import com.example.mvpreaderjava.ui.widget.EmptyLayout;
+import com.example.mvpreaderjava.ui.widget.imp.OnDialogCallBack;
 import com.orhanobut.logger.Logger;
 
 import java.io.Serializable;
@@ -24,7 +28,7 @@ import me.yokeyword.fragmentation.SupportFragment;
  * Created by sw116 on 2018/4/19.
  */
 
-public abstract class SimpleFragment<A extends Serializable> extends SupportFragment implements BaseView {
+public abstract class SimpleFragment<A extends Serializable> extends SupportFragment implements BaseView, OnDialogCallBack {
 
     Unbinder mUnbinder;
 
@@ -34,7 +38,10 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
 
     private boolean hasArgument = false;
 
-    private EmptyLayout emptyLayout;
+    private EmptyLayout emptyLayout=null;
+    private EmptyLayout emptyView=null;
+
+    protected DialogAlert mDialogAlert;
 
     @Override
     public void setArguments(@Nullable Bundle args) {
@@ -69,6 +76,10 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
 
     public void setUpEmptyLayout(EmptyLayout layout) {
         this.emptyLayout = layout;
+    }
+
+    public void setUpEmptyView(EmptyLayout emptyView) {
+        setUpEmptyLayout(emptyView);
     }
 
     @Override
@@ -151,12 +162,48 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
     }
 
     @Override
-    public void progress() {
+    public void progress(String m) {
+        Bundle bundle = new Bundle();
+        bundle.putString(DialogAlert.ARGS_MESSAGE, TextUtils.isEmpty(m) ? "loading..." : m);
+        bundle.putInt(DialogAlert.ARGS_STATE, DialogAlert.STATE_LOADING);
+        bundle.putString(DialogAlert.ARGS_FROM, DialogAlert.FROM_DIALOGFRAGMENT);
+        mDialogAlert = DialogAlert.newInstance(bundle);
+        mDialogAlert.setCallBack(this);
+        mDialogAlert.show(getFragmentManager(), "progress");
+    }
 
+    @Override
+    public void setProgressState(int state, String msg) {
+        if (mDialogAlert != null && !mDialogAlert.isHidden()) {
+            mDialogAlert.setState(state);
+            mDialogAlert.setMessage(msg);
+        }
     }
 
     @Override
     public void dismissProgress() {
+        if (mDialogAlert != null && !mDialogAlert.isHidden()) {
+            mDialogAlert.dismiss();
+        }
+    }
+
+    @Override
+    public void onCancel(DialogFragment v) {
+
+    }
+
+    @Override
+    public void onSure(DialogFragment v, int white) {
+
+    }
+
+    @Override
+    public void onError(DialogFragment v, String str) {
+
+    }
+
+    @Override
+    public void onDismiss(DialogFragment v) {
 
     }
 

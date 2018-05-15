@@ -61,7 +61,7 @@ public class ListFragmentOne extends BaseMainFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setupToolbar(toolbar);
+        setupToolbar(toolbar,"ListFragmentOne");
         appCompatActivity.getSupportActionBar().setTitle(getArguments().getString("tag"));
 //        data = new ArrayList<>();
 //        Map<String, String> map = new HashMap<>();

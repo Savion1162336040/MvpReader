@@ -18,10 +18,8 @@ public class WanAndroidPostContract {
         void loadMore();
         void showData(List<WanAndroidPost> data);
         void showBanner(List<WanAndroidBanner> banners);
-        //加入收藏
-        void collected(int id);
-        //取消收藏
-        void unCollected(int id);
+        //收藏
+        void collected(int id,boolean collected);
     }
 
     public interface Presenter<V extends BaseView> extends BasePresenter<V> {
@@ -32,8 +30,6 @@ public class WanAndroidPostContract {
         //获取文章与banner
         void getData(int postpage);
         //收藏站内文章
-        void collect(int id);
-        //取消收藏
-        void unCollect(int id);
+        void collect(int id,boolean collect);
     }
 }

@@ -68,7 +68,7 @@ public class JUHENewsMainFragment extends BaseMainFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setupToolbar(toolbar);
+        setupToolbar(toolbar,"聚合数据");
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(new TabAdapter(getChildFragmentManager()));
     }

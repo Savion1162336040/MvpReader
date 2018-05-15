@@ -26,16 +26,7 @@ public class JUHEPresenter extends RxPresenter<JUHEContract.View> implements JUH
 
     @Override
     public void getNews(String type) {
-//        add(dataManager.getJuheNews(type).compose(RxUtils.commonFlowableScheduler()).doOnSubscribe(subscription -> {
-//            view.loading();
-//        }).subscribeWith(new CommomResourceScriber<List<JUHENewsResponse.Data>>(view, true) {
-//            @Override
-//            public void onNext(List<JUHENewsResponse.Data> data) {
-//
-//            }
-//        }));
-        dataManager.getJuheNews(type)
-                .delay(3, TimeUnit.SECONDS)
+        add(dataManager.getJuheNews(type)
                 .compose(RxUtils.commonFlowableScheduler())
                 .compose(RxUtils.handlerResult())
                 .compose(RxUtils.handlerData())
@@ -46,6 +37,6 @@ public class JUHEPresenter extends RxPresenter<JUHEContract.View> implements JUH
                         view.content();
                         view.loadMoreData(data);
                     }
-                });
+                }));
     }
 }

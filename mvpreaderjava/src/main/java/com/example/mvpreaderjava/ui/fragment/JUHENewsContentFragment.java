@@ -56,14 +56,15 @@ public class JUHENewsContentFragment extends BaseFragment<Tabs, JUHEPresenter> i
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setUpEmptyLayout(emptyLayout);
+        //setUpEmptyLayout(emptyLayout);
+        setUpEmptyView(emptyLayout);
     }
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         dataList = new ArrayList<>();
-        adapter = new JUHENewsAdapter(dataList, _mActivity);
+        adapter = new JUHENewsAdapter(R.layout.adapter_juhe_news, dataList);
         recyclerView.setAdapter(adapter);
         Tabs tabs = getMArgument();
         mPresenter.getNews(tabs.getType());

@@ -58,7 +58,8 @@ public class DialogAlert extends BaseDialogFragment implements DialogInterface.O
     private ProgressBar pbBar;
 
     @SuppressLint("ValidFragment")
-    private DialogAlert(){}
+    private DialogAlert() {
+    }
 
     public void setCallBack(OnDialogCallBack callBack) {
         this.callBack = callBack;
@@ -133,19 +134,24 @@ public class DialogAlert extends BaseDialogFragment implements DialogInterface.O
         changeState(this.state);
     }
 
+    public void setMessage(String msg) {
+        this.message = msg;
+        this.tvMsg.setText(this.message);
+    }
+
     private synchronized void changeState(int state) {
         switch (state) {
             case STATE_FAILED:
-                ivIcon.setImageResource(R.drawable.close);
+                ivIcon.setImageResource(R.drawable.ic_close);
                 ivIcon.setVisibility(View.VISIBLE);
                 pbBar.setVisibility(View.GONE);
-                handler.sendEmptyMessageDelayed(1,1000);
+                handler.sendEmptyMessageDelayed(1, 1000);
                 break;
             case STATE_SUCCESS:
-                ivIcon.setImageResource(R.drawable.ok);
+                ivIcon.setImageResource(R.drawable.ic_success);
                 ivIcon.setVisibility(View.VISIBLE);
                 pbBar.setVisibility(View.GONE);
-                handler.sendEmptyMessageDelayed(1,1000);
+                handler.sendEmptyMessageDelayed(1, 1000);
                 break;
             case STATE_LOADING:
                 ivIcon.setVisibility(View.GONE);
@@ -153,10 +159,10 @@ public class DialogAlert extends BaseDialogFragment implements DialogInterface.O
                 break;
             case STATE_DEFAULT:
             default:
-                ivIcon.setImageResource(R.drawable.tip);
+                ivIcon.setImageResource(R.drawable.ic_warning);
                 ivIcon.setVisibility(View.VISIBLE);
                 pbBar.setVisibility(View.GONE);
-                handler.sendEmptyMessageDelayed(1,1000);
+                handler.sendEmptyMessageDelayed(1, 1000);
                 break;
         }
     }
@@ -198,11 +204,11 @@ public class DialogAlert extends BaseDialogFragment implements DialogInterface.O
         }
     }
 
-    Handler handler = new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 1:
                     dismiss();
                     break;

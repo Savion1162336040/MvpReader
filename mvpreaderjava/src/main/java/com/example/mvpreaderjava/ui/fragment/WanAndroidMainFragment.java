@@ -11,6 +11,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -62,13 +65,39 @@ public class WanAndroidMainFragment extends BaseMainFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setupToolbar(toolbar);
+        setupToolbar(toolbar, "玩Android");
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new WanAndroidPostFragment());
         viewPager.setAdapter(new TabAdapter(getChildFragmentManager(), fragments, tabs));
 
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.wan_android_action, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.wan_android_search:
+                showToast("go searcg");
+                break;
+            case R.id.wan_android_collect:
+                showToast("go collect");
+                break;
+        }
+        return true;
     }
 
     @Override

@@ -50,4 +50,5 @@
         <item name="android:indeterminateBehavior">repeat</item>
         <item name="android:indeterminateDuration">2000</item>
     </style>
+
 </resources>

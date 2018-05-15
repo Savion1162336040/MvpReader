@@ -72,12 +72,17 @@ public abstract class SimpleActivity extends SupportActivity implements BaseView
     }
 
     @Override
-    public void progress() {
+    public void progress(String ms) {
 
     }
 
     @Override
     public void dismissProgress() {
+
+    }
+
+    @Override
+    public void setProgressState(int state, String msg) {
 
     }
 

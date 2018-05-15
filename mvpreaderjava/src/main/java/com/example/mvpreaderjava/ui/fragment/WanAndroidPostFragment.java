@@ -46,7 +46,7 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setUpEmptyLayout(emptyLayout);
+        setUpEmptyView(emptyLayout);
         refreshLayout.setOnRefreshListener(this);
     }
 
@@ -90,22 +90,11 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
     }
 
     @Override
-    public void collected(int id) {
+    public void collected(int id, boolean collected) {
         Observable.fromIterable(posts)
                 .filter(wanAndroidPost -> wanAndroidPost.getId() == id)
                 .doOnNext(wanAndroidPost -> {
-                    wanAndroidPost.setCollect(true);
-                    adapter.notifyDataSetChanged();
-                })
-                .subscribe();
-    }
-
-    @Override
-    public void unCollected(int id) {
-        Observable.fromIterable(posts)
-                .filter(wanAndroidPost -> wanAndroidPost.getId() == id)
-                .doOnNext(wanAndroidPost -> {
-                    wanAndroidPost.setCollect(false);
+                    wanAndroidPost.setCollect(collected);
                     adapter.notifyDataSetChanged();
                 })
                 .subscribe();
@@ -120,9 +109,9 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
             case R.id.adapter_home_post_like:
                 if (view instanceof CheckBox) {
                     if (((CheckBox) view).isChecked()) {
-                        mPresenter.unCollect(posts.get(position).getId());
+                        mPresenter.collect(posts.get(position).getId(), true);
                     } else {
-                        mPresenter.collect(posts.get(position).getId());
+                        mPresenter.collect(posts.get(position).getId(), false);
                     }
                 }
                 break;

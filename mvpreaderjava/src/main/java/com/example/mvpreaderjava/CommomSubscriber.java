@@ -37,10 +37,13 @@ public abstract class CommomSubscriber<T> extends ResourceSubscriber<T> {
     public void onError(Throwable t) {
         if (t instanceof HttpException) {
             view.showToast(TextUtils.isEmpty(t.getMessage()) ? "数据加载失败" : t.getMessage());
+            onHandleableError(t);
         } else if (t instanceof ApiException) {
             view.showToast(t.getMessage());
+            onHandleableError(t);
         } else if (t instanceof DataEmptyException) {
             view.showToast(t.getMessage());
+            onHandleableError(t);
             if (isStateAsyn)
                 view.empty();
             return;
@@ -56,5 +59,7 @@ public abstract class CommomSubscriber<T> extends ResourceSubscriber<T> {
     public void onComplete() {
         view.complete();
     }
+
+    protected void onHandleableError(Throwable e){}
 
 }

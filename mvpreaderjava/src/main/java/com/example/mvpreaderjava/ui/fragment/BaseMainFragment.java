@@ -32,10 +32,11 @@ public abstract class BaseMainFragment extends SimpleFragment {
         appCompatActivity = (AppCompatActivity) activity;
     }
 
-    protected void setupToolbar(Toolbar toolbar) {
+    protected void setupToolbar(Toolbar toolbar,String title) {
         appCompatActivity.setSupportActionBar(toolbar);
         appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         appCompatActivity.getSupportActionBar().setHomeButtonEnabled(true);
+        appCompatActivity.getSupportActionBar().setTitle(title);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(appCompatActivity, fragmentCallback.getDrawer(), toolbar, R.string.drawer_open_des,
                 R.string.drawer_close_des);
         mDrawerToggle.syncState();

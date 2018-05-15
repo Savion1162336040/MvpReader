@@ -38,7 +38,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (!(activity instanceof OnDialogCallBack)) {
-            throw new ClassCastException("dialog fragment所在activity必须实现OnDialogCallBack接口");
+            //throw new ClassCastException("dialog fragment所在activity必须实现OnDialogCallBack接口");
         } else {
             mCallBack = (OnDialogCallBack) activity;
         }

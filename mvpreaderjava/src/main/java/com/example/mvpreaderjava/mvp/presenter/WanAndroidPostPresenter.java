@@ -10,17 +10,21 @@ import com.example.mvpreaderjava.modle.bean.wanAndroid.WanAndroidResponse;
 import com.example.mvpreaderjava.modle.exception.DataEmptyException;
 import com.example.mvpreaderjava.mvp.RxPresenter;
 import com.example.mvpreaderjava.mvp.contract.WanAndroidPostContract;
+import com.example.mvpreaderjava.ui.widget.DialogAlert;
 
 import org.reactivestreams.Publisher;
 
 import java.util.List;
 import java.util.Observable;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by sw116 on 2018/5/3.
@@ -91,42 +95,32 @@ public class WanAndroidPostPresenter extends RxPresenter<WanAndroidPostContract.
 
 
     @Override
-    public void collect(int id) {
-        add(dataManager.addCollectInner(id)
+    public void collect(int id, boolean collect) {
+        add((collect ? dataManager.addCollectInner(id) : dataManager.unCollect(id))
                 .compose(RxUtils.commonFlowableScheduler())
                 .compose(RxUtils.handlerWanAndroidData())
                 .doOnSubscribe(subscription -> {
                     if (isAttached())
-                        view.progress();
+                        view.progress("collecting...");
                 })
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new CommomSubscriber<String>(view, false) {
                     @Override
                     public void onNext(String s) {
                         if (isAttached()) {
-                            view.dismissProgress();
-                            view.collected(id);
+                            view.setProgressState(DialogAlert.STATE_SUCCESS, collect ? "collect success" : "uncollect success");
+                            view.collected(id, collect);
                         }
                     }
-                }));
-    }
 
-    @Override
-    public void unCollect(int id) {
-        add(dataManager.unCollect(id)
-                .compose(RxUtils.commonFlowableScheduler())
-                .compose(RxUtils.handlerWanAndroidData())
-                .doOnSubscribe(subscription -> {
-                    if (isAttached())
-                        view.progress();
-                })
-                .subscribeWith(new CommomSubscriber<String>(view, false) {
                     @Override
-                    public void onNext(String s) {
+                    protected void onHandleableError(Throwable t) {
                         if (isAttached()) {
-                            view.dismissProgress();
-                            view.unCollected(id);
+                            view.setProgressState(DialogAlert.STATE_FAILED, collect ? "collect failed:" + t.getMessage() : "uncollect failed:" + t.getMessage());
+                            view.collected(id, !collect);
                         }
                     }
+
                 }));
     }
 }

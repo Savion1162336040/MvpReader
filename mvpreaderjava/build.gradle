@@ -10,6 +10,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+
     }
 
     buildTypes {
@@ -50,5 +52,9 @@ dependencies {
     implementation rootProject.ext.dependencies['rxpermissions']
     implementation rootProject.ext.dependencies['fragmentation']
     implementation rootProject.ext.dependencies['BRVAH']
-    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation rootProject.ext.dependencies['materialDialog']
+    implementation rootProject.ext.dependencies['multidex']
+    debugImplementation rootProject.ext.dependencies['leakcanary']
+    releaseImplementation rootProject.ext.dependencies['leakcanary-no-op']
+    implementation project(':loadinglayout')
 }

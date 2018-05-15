@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ButtonStyle">
+        <item name="android:background">@drawable/selector_button</item>
+    </style>
+
+    <style name="LoadingLayoutStyle">
+        <item name="error_text">error</item>
+        <item name="empty_text">empty</item>
+        <item name="loading_text">loading...</item>
+        <item name="text_size">15sp</item>
+    </style>
+    
+</resources>

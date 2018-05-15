@@ -3,7 +3,7 @@ package com.example.mvpreaderjava.ui.activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
@@ -19,11 +19,12 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatDialog;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.mvpreaderjava.R;
+import com.example.mvpreaderjava.RxUtils;
 import com.example.mvpreaderjava.ui.base.SimpleActivity;
 import com.example.mvpreaderjava.ui.fragment.BaseMainFragment;
 import com.example.mvpreaderjava.ui.fragment.JUHENewsMainFragment;
@@ -31,13 +32,17 @@ import com.example.mvpreaderjava.ui.fragment.ListFragmentOne;
 import com.example.mvpreaderjava.ui.fragment.WanAndroidMainFragment;
 import com.orhanobut.logger.Logger;
 
+import org.reactivestreams.Subscription;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import io.reactivex.Flowable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.FlowableSubscriber;
+import io.reactivex.functions.Function;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -57,16 +62,6 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
 
     SupportFragment showFragment;
     SupportFragment hideFragment;
-//    @BindView(R.id.main_coordinator)
-//    CoordinatorLayout coordinatorLayout;
-//    @BindView(R.id.main_appbarlayout)
-//    AppBarLayout appBarLayout;
-//    @BindView(R.id.main_toolbar)
-//    Toolbar toolbar;
-//    @BindView(R.id.main_tablayout)
-//    TabLayout tabLayout;
-//    @BindView(R.id.main_viewpager)
-//    ViewPager viewPager;
 
     @Override
     protected int getLayout() {
@@ -81,7 +76,7 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
         showFragment = fragmentImg;
         hideFragment = null;
         navigationView.setCheckedItem(R.id.main_drawer_action_pic);
-        loadMultipleRootFragment(R.id.main_framelayout, 0, fragmentImg,fragmentWanA);
+        loadMultipleRootFragment(R.id.main_framelayout, 0, fragmentImg, fragmentWanA);
     }
 
     @Override
@@ -100,38 +95,6 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
         showFragment = thisFragment;
         showHideFragment(showFragment, hideFragment);
         hideFragment = showFragment;
-    }
-
-    private String NOTIFICATION_CHANNEL_ID = "1223";
-    private String NOTIFICATION_CHANNEL_NAME = "LIMIT_WARNING";
-
-    private void createNotification() {
-        NotificationManager notificationManagerCompat = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
-            channel.enableLights(true);
-            channel.setLightColor(Color.RED);
-            channel.enableVibration(true);
-            notificationManagerCompat.createNotificationChannel(channel);
-            builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
-        } else {
-            builder = new NotificationCompat.Builder(this);
-        }
-        builder.setContentText("what you want to say");
-        builder.setContentTitle("tip");
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
-        builder.setSmallIcon(R.drawable.ic_empty);
-        builder.setWhen(System.currentTimeMillis());
-        builder.setDefaults(Notification.DEFAULT_VIBRATE);
-        builder.setTicker("first to show");
-        notificationManagerCompat.notify(0x100, builder.build());
-    }
-
-    private void createDialog() {
-        AppCompatDialog dialog = new AppCompatDialog(this);
-        dialog.setTitle("tip");
-        dialog.show();
     }
 
     @Override
@@ -169,6 +132,7 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
             case R.id.main_drawer_action_concatmap:
                 break;
             case R.id.main_drawer_action_dialo:
+                startActivity(new Intent(this, TestActivity.class));
                 break;
         }
         drawerLayout.closeDrawer(Gravity.LEFT);
@@ -186,12 +150,6 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
         }
     }
 
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Override
     public void openDrawer(boolean open) {
         if (open)
@@ -205,35 +163,4 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
         return drawerLayout;
     }
 
-    class MyPageAdapter extends FragmentPagerAdapter {
-
-        String[] pages = {"Page1", "Page2"};
-        List<Fragment> fragments = new ArrayList<>();
-
-        public MyPageAdapter(FragmentManager fm) {
-            super(fm);
-            for (String s : pages) {
-                Bundle bundle = new Bundle();
-                bundle.putString("tag", s);
-                fragments.add(ListFragmentOne.newInstance(bundle));
-            }
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments != null ? fragments.size() : 0;
-        }
-
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return fragments.get(position).getArguments().getString("tag");
-        }
-
-    }
 }

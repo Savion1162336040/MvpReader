@@ -16,6 +16,7 @@ public interface BaseView {
     void empty();
     void complete();
 
-    void progress();
+    void progress(String msg);
     void dismissProgress();
+    void setProgressState(int state,String msg);
 }

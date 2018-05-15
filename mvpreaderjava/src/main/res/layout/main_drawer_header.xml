@@ -23,5 +23,4 @@
         android:textColor="@color/white"
         android:textSize="@dimen/content_size" />
 
-
 </LinearLayout>

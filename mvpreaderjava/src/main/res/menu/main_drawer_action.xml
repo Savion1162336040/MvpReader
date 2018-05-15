@@ -11,8 +11,8 @@
                 android:title="美图" />
             <item
                 android:id="@+id/main_drawer_action_news"
-                android:icon="@drawable/ic_share"
-                android:title="分享" />
+                android:icon="@drawable/ic_wanandroid"
+                android:title="玩Android" />
             <item
                 android:id="@+id/main_drawer_action_coming"
                 android:icon="@drawable/ic_more"
@@ -25,47 +25,47 @@
         <menu>
             <item
                 android:id="@+id/main_drawer_action_activities"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="GET_ACTIVITIES" />
             <item
                 android:id="@+id/main_drawer_action_receivers"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="GET_RECEIVERS" />
             <item
                 android:id="@+id/main_drawer_action_services"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="GET_SERVICES" />
             <item
                 android:id="@+id/main_drawer_action_providers"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="GET_PROVIDERS" />
             <item
                 android:id="@+id/main_drawer_action_instrumentation"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="GET_INSTRUMENTATION" />
             <item
                 android:id="@+id/main_drawer_action_filter"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="GET_INTENT_FILTERS" />
             <item
                 android:id="@+id/main_drawer_action_signatures"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="GET_SIGNATURES" />
             <item
                 android:id="@+id/main_drawer_action_flatmap"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="flatMap" />
             <item
                 android:id="@+id/main_drawer_action_concatmap"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="concatMap" />
             <item
                 android:id="@+id/main_drawer_action_dialo"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="dialog" />
             <item
                 android:id="@+id/main_drawer_action_test"
-                android:icon="@drawable/ic_error"
+                android:icon="@drawable/ic_warning"
                 android:title="test" />
         </menu>
     </item>

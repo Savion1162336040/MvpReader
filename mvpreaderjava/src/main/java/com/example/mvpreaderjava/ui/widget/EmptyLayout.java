@@ -1,6 +1,9 @@
 package com.example.mvpreaderjava.ui.widget;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,11 +26,11 @@ import java.util.List;
 
 
 /**
- *  空页面 错误页面 数据加载中 展示
- *
+ * 空页面 错误页面 数据加载中 展示
+ * <p>
  * Created by quanke(http://quanke.name) on 2016/4/5.
  */
-public class EmptyLayout extends LinearLayout{
+public class EmptyLayout extends LinearLayout {
 
     private Animation mLoadingAnimation;
 
@@ -39,7 +42,6 @@ public class EmptyLayout extends LinearLayout{
     private TextView mEmptyMessageView;
     private TextView mErrorMessageView;
 
-
     private RelativeLayout mEmptyRelativeLayout;
     private int mErrorMessageViewId;
     private int mEmptyMessageViewId;
@@ -47,6 +49,8 @@ public class EmptyLayout extends LinearLayout{
     private LayoutInflater mInflater;
     private boolean mViewsAdded;
     private int mLoadingAnimationViewId;
+    private int mEmptyImageViewId;
+    private int mErrorImageViewId;
     private OnClickListener mLoadingButtonClickListener;
     private OnClickListener mEmptyButtonClickListener;
     private OnClickListener mErrorButtonClickListener;
@@ -72,9 +76,9 @@ public class EmptyLayout extends LinearLayout{
     // default values
     // ---------------------------
     private int mEmptyType = TYPE_LOADING;
-    private int mErrorDrawable = R.drawable.ic_error;
+    private int mErrorDrawable = R.drawable.ic_warning;
     private int mEmptyDrawable = R.drawable.ic_empty;
-    private int mLoadingDrawable = R.drawable.ic_loading;
+    private int mLoadingDrawable = R.drawable.ic_refresh;
 
     private String mErrorMessage = "哎呀！发生了一些错误";
     private String mEmptyMessage = "啥也没有";
@@ -106,7 +110,7 @@ public class EmptyLayout extends LinearLayout{
         init();
     }
 
-    private void init(){
+    private void init() {
         childViews = new ArrayList<View>();
 //        getChildViews();
 
@@ -116,8 +120,10 @@ public class EmptyLayout extends LinearLayout{
     // ---------------------------
     // getters and setters
     // ---------------------------
+
     /**
      * Gets the loading layout
+     *
      * @return the loading layout
      */
     public ViewGroup getLoadingView() {
@@ -126,6 +132,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets loading layout
+     *
      * @param loadingView
      */
     public void setLoadingView(ViewGroup loadingView) {
@@ -134,14 +141,16 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets loading layout resource
+     *
      * @param res
      */
-    public void setLoadingViewRes(int res){
+    public void setLoadingViewRes(int res) {
         this.mLoadingView = (ViewGroup) mInflater.inflate(res, null);
     }
 
     /**
      * Gets the empty layout
+     *
      * @return the empty layout
      */
     public ViewGroup getEmptyView() {
@@ -150,6 +159,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets empty layout
+     *
      * @param emptyView
      */
     public void setEmptyView(ViewGroup emptyView) {
@@ -158,14 +168,16 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets empty layout resource
+     *
      * @param res
      */
-    public void setEmptyViewRes(int res){
+    public void setEmptyViewRes(int res) {
         this.mEmptyView = (ViewGroup) mInflater.inflate(res, null);
     }
 
     /**
      * Gets the error layout
+     *
      * @return the error layout
      */
     public ViewGroup getErrorView() {
@@ -174,6 +186,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets error layout
+     *
      * @param errorView
      */
     public void setErrorView(ViewGroup errorView) {
@@ -182,14 +195,16 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets error layout resource
+     *
      * @param res
      */
-    public void setErrorViewRes(int res){
+    public void setErrorViewRes(int res) {
         this.mErrorView = (ViewGroup) mInflater.inflate(res, null);
     }
 
     /**
      * Gets the loading animation
+     *
      * @return the loading animation
      */
     public Animation getLoadingAnimation() {
@@ -198,6 +213,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets the loading animation
+     *
      * @param animation
      */
     public void setLoadingAnimation(Animation animation) {
@@ -206,6 +222,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets the resource of loading animation
+     *
      * @param animationResource
      */
     public void setLoadingAnimationRes(int animationResource) {
@@ -229,7 +246,6 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *
      * @return
      */
     public String getErrorMessage() {
@@ -237,8 +253,7 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *
-     * @param errorMessage the error message
+     * @param errorMessage  the error message
      * @param messageViewId
      */
     public void setErrorMessage(String errorMessage, int messageViewId) {
@@ -247,7 +262,6 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *
      * @param errorMessage the error message
      */
     public void setErrorMessage(String errorMessage) {
@@ -255,7 +269,6 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *
      * @return
      */
     public String getEmptyMessage() {
@@ -263,8 +276,7 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *
-     * @param emptyMessage the message
+     * @param emptyMessage  the message
      * @param messageViewId
      */
     public void setEmptyMessage(String emptyMessage, int messageViewId) {
@@ -273,7 +285,6 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *
      * @param emptyMessage the message
      */
     public void setEmptyMessage(String emptyMessage) {
@@ -282,6 +293,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets the message which will be shown when the list is being loaded
+     *
      * @return
      */
     public String getLoadingMessage() {
@@ -298,7 +310,6 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *
      * @param loadingMessage the message
      */
     public void setLoadingMessage(String loadingMessage) {
@@ -306,7 +317,6 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *
      * @return
      */
     public int getLoadingAnimationViewId() {
@@ -314,7 +324,6 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *
      * @param loadingAnimationViewId the id of the view
      */
     public void setLoadingAnimationViewId(int loadingAnimationViewId) {
@@ -323,6 +332,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets the OnClickListener which perform when LoadingView was click
+     *
      * @return
      */
     public OnClickListener getLoadingButtonClickListener() {
@@ -331,6 +341,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets the OnClickListener to LoadingView
+     *
      * @param loadingButtonClickListener OnClickListener Object
      */
     public void setLoadingButtonClickListener(OnClickListener loadingButtonClickListener) {
@@ -339,6 +350,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets the OnClickListener which perform when EmptyView was click
+     *
      * @return
      */
     public OnClickListener getEmptyButtonClickListener() {
@@ -347,6 +359,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets the OnClickListener to EmptyView
+     *
      * @param emptyButtonClickListener OnClickListener Object
      */
     public void setEmptyButtonClickListener(OnClickListener emptyButtonClickListener) {
@@ -355,6 +368,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets the OnClickListener which perform when ErrorView was click
+     *
      * @return
      */
     public OnClickListener getErrorButtonClickListener() {
@@ -363,6 +377,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets the OnClickListener to ErrorView
+     *
      * @param errorButtonClickListener OnClickListener Object
      */
     public void setErrorButtonClickListener(OnClickListener errorButtonClickListener) {
@@ -371,6 +386,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets if a button is shown in the empty view
+     *
      * @return if a button is shown in the empty view
      */
     public boolean isEmptyButtonShown() {
@@ -379,6 +395,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets if a button will be shown in the empty view
+     *
      * @param showEmptyButton will a button be shown in the empty view
      */
     public void setShowEmptyButton(boolean showEmptyButton) {
@@ -387,6 +404,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets if a button is shown in the loading view
+     *
      * @return if a button is shown in the loading view
      */
     public boolean isLoadingButtonShown() {
@@ -395,6 +413,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets if a button will be shown in the loading view
+     *
      * @param showLoadingButton will a button be shown in the loading view
      */
     public void setShowLoadingButton(boolean showLoadingButton) {
@@ -403,6 +422,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets if a button is shown in the error view
+     *
      * @return if a button is shown in the error view
      */
     public boolean isErrorButtonShown() {
@@ -411,6 +431,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets if a button will be shown in the error view
+     *
      * @param showErrorButton will a button be shown in the error view
      */
     public void setShowErrorButton(boolean showErrorButton) {
@@ -419,6 +440,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets the ID of the button in the loading view
+     *
      * @return the ID of the button in the loading view
      */
     public int getmLoadingViewButtonId() {
@@ -427,6 +449,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets the ID of the button in the loading view. This ID is required if you want the button the loading view to be click-able.
+     *
      * @param loadingViewButtonId the ID of the button in the loading view
      */
     public void setLoadingViewButtonId(int loadingViewButtonId) {
@@ -435,6 +458,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets the ID of the button in the error view
+     *
      * @return the ID of the button in the error view
      */
     public int getErrorViewButtonId() {
@@ -443,6 +467,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets the ID of the button in the error view. This ID is required if you want the button the error view to be click-able.
+     *
      * @param errorViewButtonId the ID of the button in the error view
      */
     public void setErrorViewButtonId(int errorViewButtonId) {
@@ -451,6 +476,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Gets the ID of the button in the empty view
+     *
      * @return the ID of the button in the empty view
      */
     public int getEmptyViewButtonId() {
@@ -459,6 +485,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * Sets the ID of the button in the empty view. This ID is required if you want the button the empty view to be click-able.
+     *
      * @param emptyViewButtonId the ID of the button in the empty view
      */
     public void setEmptyViewButtonId(int emptyViewButtonId) {
@@ -472,6 +499,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * 璁剧疆閿欒鐨勫浘鐗�
+     *
      * @param mErrorDrawable 閿欒鍥剧墖璧勬簮id
      */
     public void setErrorDrawable(int mErrorDrawable) {
@@ -484,6 +512,7 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * 璁剧疆绌虹殑鍥剧墖
+     *
      * @param mEmptyDrawable 閿欒绌鸿祫婧恑d
      */
     public void setEmptyDrawable(int mEmptyDrawable) {
@@ -496,28 +525,29 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * 璁剧疆Loading鐨勫浘鐗�
+     *
      * @param mLoadingDrawable 閿欒Loading璧勬簮id
      */
     public void setLoadingDrawable(int mLoadingDrawable) {
         this.mLoadingDrawable = mLoadingDrawable;
     }
 
-    private void getChildViews(){
+    private void getChildViews() {
         int childCount = getChildCount();
-        Log.d("EmptyLayout","ChildCount:"+childCount);
+        Log.d("EmptyLayout", "ChildCount:" + childCount);
         View view;
-        for (int i=0;i<childCount;i++){
+        for (int i = 0; i < childCount; i++) {
             view = getChildAt(i);
-            if (isEmptyView(view)){
+            if (isEmptyView(view)) {
                 continue;
             }
             childViews.add(view);
         }
     }
 
-    private void hideChildView(){
-        for (View view: childViews ) {
-            if (isEmptyView(view)){
+    private void hideChildView() {
+        for (View view : childViews) {
+            if (isEmptyView(view)) {
                 continue;
             }
             view.setVisibility(GONE);
@@ -526,19 +556,20 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * 鍒ゆ柇view 瀵硅薄鏄惁鏄疎mptyView
+     *
      * @param view
      * @return
      */
-    private boolean isEmptyView(View view){
-        if ((view == null||mEmptyRelativeLayout == view||view == mLoadingView||view == mEmptyView||view == mErrorView)){
+    private boolean isEmptyView(View view) {
+        if ((view == null || mEmptyRelativeLayout == view || view == mLoadingView || view == mEmptyView || view == mErrorView)) {
             return true;
         }
         return false;
     }
 
-    private void showChildView(){
-        for (View view: childViews ) {
-            if (isEmptyView(view)){
+    private void showChildView() {
+        for (View view : childViews) {
+            if (isEmptyView(view)) {
                 continue;
             }
             view.setVisibility(VISIBLE);
@@ -548,32 +579,33 @@ public class EmptyLayout extends LinearLayout{
     /**
      * 闅愯棌EmptyView
      */
-    private void hideEmptyView(){
-        if (mLoadingView != null){
+    private void hideEmptyView() {
+        if (mLoadingView != null) {
             mLoadingView.setVisibility(GONE);
         }
 
-        if (mEmptyView != null){
+        if (mEmptyView != null) {
             mEmptyView.setVisibility(GONE);
         }
 
-        if (mErrorView != null){
+        if (mErrorView != null) {
             mErrorView.setVisibility(GONE);
         }
     }
 
     /**
      * 灞曠ず閿欒淇℃伅
+     *
      * @param resId 鍥剧墖璧勬簮id
      * @param text
      */
-    public void showError(int resId,String text){
+    public void showError(int resId, String text) {
         setErrorDrawable(resId);
         setEmptyMessage(text);
         showError();
     }
 
-    public void showError(){
+    public void showError() {
         getChildViews();
         hideChildView();
         this.mEmptyType = TYPE_ERROR;
@@ -583,17 +615,18 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * 灞曠ず绌轰俊鎭�
+     *
      * @param resId 鍥剧墖璧勬簮id
      * @param text
      */
-    public void showEmpty(int resId,String text){
+    public void showEmpty(int resId, String text) {
 
         setEmptyDrawable(resId);
         setEmptyMessage(text);
         showEmpty();
     }
 
-    public void showEmpty(){
+    public void showEmpty() {
 
         getChildViews();
         hideChildView();
@@ -604,16 +637,17 @@ public class EmptyLayout extends LinearLayout{
 
     /**
      * 灞曠ず鍔犺浇涓�
+     *
      * @param resId 鍥剧墖璧勬簮id
      * @param text
      */
-    public void showLoading(int resId,String text){
+    public void showLoading(int resId, String text) {
         setLoadingDrawable(resId);
         setLoadingMessage(text);
         showLoading();
     }
 
-    public void showLoading(){
+    public void showLoading() {
         getChildViews();
         hideChildView();
         this.mEmptyType = TYPE_LOADING;
@@ -621,9 +655,9 @@ public class EmptyLayout extends LinearLayout{
     }
 
     /**
-     *闅愯棌EmptyLayout
+     * 闅愯棌EmptyLayout
      */
-    public void hide(){
+    public void hide() {
         showChildView();
         hideEmptyView();
     }
@@ -641,9 +675,9 @@ public class EmptyLayout extends LinearLayout{
             mEmptyRelativeLayout = new RelativeLayout(getContext());
             mEmptyRelativeLayout.setGravity(Gravity.CENTER);
             mEmptyRelativeLayout.setLayoutParams(lp);
-            if (mEmptyView!=null) mEmptyRelativeLayout.addView(mEmptyView);
-            if (mLoadingView!=null) mEmptyRelativeLayout.addView(mLoadingView);
-            if (mErrorView!=null) mEmptyRelativeLayout.addView(mErrorView);
+            if (mEmptyView != null) mEmptyRelativeLayout.addView(mEmptyView);
+            if (mLoadingView != null) mEmptyRelativeLayout.addView(mLoadingView);
+            if (mErrorView != null) mEmptyRelativeLayout.addView(mErrorView);
             mViewsAdded = true;
             mEmptyRelativeLayout.setVisibility(VISIBLE);
             addView(mEmptyRelativeLayout);
@@ -651,113 +685,133 @@ public class EmptyLayout extends LinearLayout{
 
 
         // change empty type
-            View loadingAnimationView = null;
-            if (mLoadingAnimationViewId > 0) loadingAnimationView = findViewById(mLoadingAnimationViewId);
-            switch (mEmptyType) {
-                case TYPE_EMPTY:
-                    if (mEmptyView!=null) mEmptyView.setVisibility(View.VISIBLE);
-                    if (mErrorView!=null) mErrorView.setVisibility(View.GONE);
-                    if (mLoadingView!=null) {
-                        mLoadingView.setVisibility(View.GONE);
-                        if (loadingAnimationView!=null && loadingAnimationView.getAnimation()!=null) loadingAnimationView.getAnimation().cancel();
+        View loadingAnimationView = null;
+        View emptyImageView = null;
+        View errorImageView = null;
+        if (mLoadingAnimationViewId > 0)
+            loadingAnimationView = findViewById(mLoadingAnimationViewId);
+        if (mErrorImageViewId > 0)
+            errorImageView = findViewById(mErrorImageViewId);
+        if (mEmptyImageViewId > 0)
+            emptyImageView = findViewById(mEmptyImageViewId);
+        switch (mEmptyType) {
+            case TYPE_EMPTY:
+                if (mEmptyView != null) mEmptyView.setVisibility(View.VISIBLE);
+                if (mErrorView != null) mErrorView.setVisibility(View.GONE);
+                if (mLoadingView != null) {
+                    mLoadingView.setVisibility(View.GONE);
+                    if (loadingAnimationView != null && loadingAnimationView.getAnimation() != null)
+                        loadingAnimationView.getAnimation().cancel();
+                }
+                if (emptyImageView != null) {
+                    emptyImageView.setBackgroundResource(mEmptyDrawable);
+                }
+                break;
+            case TYPE_ERROR:
+                if (mEmptyView != null) mEmptyView.setVisibility(View.GONE);
+                if (mErrorView != null) mErrorView.setVisibility(View.VISIBLE);
+                if (mLoadingView != null) {
+                    mLoadingView.setVisibility(View.GONE);
+                    if (loadingAnimationView != null && loadingAnimationView.getAnimation() != null)
+                        loadingAnimationView.getAnimation().cancel();
+                }
+                if (errorImageView != null) {
+                    errorImageView.setBackgroundResource(mErrorDrawable);
+                }
+                break;
+            case TYPE_LOADING:
+                if (mEmptyView != null) mEmptyView.setVisibility(View.GONE);
+                if (mErrorView != null) mErrorView.setVisibility(View.GONE);
+                if (mLoadingView != null) {
+                    mLoadingView.setVisibility(View.VISIBLE);
+                    if (mLoadingAnimation != null && loadingAnimationView != null) {
+                        loadingAnimationView.startAnimation(mLoadingAnimation);
+                    } else if (loadingAnimationView != null) {
+                        loadingAnimationView.startAnimation(getRotateAnimation());
                     }
-                    break;
-                case TYPE_ERROR:
-                    if (mEmptyView!=null) mEmptyView.setVisibility(View.GONE);
-                    if (mErrorView!=null) mErrorView.setVisibility(View.VISIBLE);
-                    if (mLoadingView!=null) {
-                        mLoadingView.setVisibility(View.GONE);
-                        if (loadingAnimationView!=null && loadingAnimationView.getAnimation()!=null) loadingAnimationView.getAnimation().cancel();
-                    }
-                    break;
-                case TYPE_LOADING:
-                    if (mEmptyView!=null) mEmptyView.setVisibility(View.GONE);
-                    if (mErrorView!=null) mErrorView.setVisibility(View.GONE);
-                    if (mLoadingView!=null) {
-                        mLoadingView.setVisibility(View.VISIBLE);
-                        if (mLoadingAnimation != null && loadingAnimationView!=null) {
-                            loadingAnimationView.startAnimation(mLoadingAnimation);
-                        }
-                        else if (loadingAnimationView!=null) {
-                            loadingAnimationView.startAnimation(getRotateAnimation());
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void refreshMessages() {
 
-        if (mEmptyMessageViewId>0 && mEmptyMessage!=null) {
-            mEmptyMessageView = ((TextView)mEmptyView.findViewById(mEmptyMessageViewId));
+        if (mEmptyMessageViewId > 0 && mEmptyMessage != null) {
+            mEmptyMessageView = ((TextView) mEmptyView.findViewById(mEmptyMessageViewId));
             mEmptyMessageView.setText(mEmptyMessage);
-            setTopDrawables(mEmptyMessageView, mEmptyDrawable);
+            //imageview done support vector,so instead
+            //setTopDrawables(mEmptyMessageView, mEmptyDrawable);
+            //setImageDrawables(null, mEmptyDrawable);
 
         }
-        if (mLoadingMessageViewId>0 && mLoadingMessage!=null) {
-            mLoadingMessageView =  ((TextView)mLoadingView.findViewById(mLoadingMessageViewId));
-            mLoadingMessageView .setText(mLoadingMessage);
+        if (mLoadingMessageViewId > 0 && mLoadingMessage != null) {
+            mLoadingMessageView = ((TextView) mLoadingView.findViewById(mLoadingMessageViewId));
+            mLoadingMessageView.setText(mLoadingMessage);
 //            setTopDrawables(mLoadingMessageView,mLoadingDrawable);// loading 涓嶈兘宸茬粡鏈塴oading image view 锛屼笉鑳界洿鎺ヨ缃甌opDrawable
         }
-        if (mErrorMessageViewId>0 && mErrorMessage!=null){
-            mErrorMessageView = ((TextView)mErrorView.findViewById(mErrorMessageViewId));
+        if (mErrorMessageViewId > 0 && mErrorMessage != null) {
+            mErrorMessageView = ((TextView) mErrorView.findViewById(mErrorMessageViewId));
             mErrorMessageView.setText(mErrorMessage);
-            setTopDrawables(mErrorMessageView,mErrorDrawable);
+            //setImageDrawables(null, mErrorDrawable);
+            //setTopDrawables(mErrorMessageView, mErrorDrawable);
         }
     }
 
 
-    private void setTopDrawables(TextView textView,int resId){
+    private void setTopDrawables(TextView textView, int resId) {
         Drawable drawable = getResources().getDrawable(resId);
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());//蹇呴』璁剧疆鍥剧墖澶у皬锛屽惁鍒欎笉鏄剧ず
-        textView.setCompoundDrawables(null,drawable,null,null);
+        textView.setCompoundDrawables(null, drawable, null, null);
+    }
+
+    private void setImageDrawables(AppCompatImageView appCompatImageView, @DrawableRes int resID) {
+        appCompatImageView.setImageResource(resID);
     }
 
     private void setDefaultValues() {
-        if (mEmptyView==null) {
+        if (mEmptyView == null) {
             mEmptyView = (ViewGroup) mInflater.inflate(R.layout.view_empty, null);
-            if (!(mEmptyMessageViewId>0)) mEmptyMessageViewId = R.id.textViewMessage;
-            if (mShowEmptyButton && mEmptyViewButtonId>0 && mEmptyButtonClickListener!=null) {
+            mEmptyImageViewId = R.id.imageViewEmpty;
+            if (!(mEmptyMessageViewId > 0)) mEmptyMessageViewId = R.id.textViewMessage;
+            if (mShowEmptyButton && mEmptyViewButtonId > 0 && mEmptyButtonClickListener != null) {
                 View emptyViewButton = mEmptyView.findViewById(mEmptyViewButtonId);
                 if (emptyViewButton != null) {
                     emptyViewButton.setOnClickListener(mEmptyButtonClickListener);
                     emptyViewButton.setVisibility(View.VISIBLE);
                 }
-            }
-            else if (mEmptyViewButtonId>0) {
+            } else if (mEmptyViewButtonId > 0) {
                 View emptyViewButton = mEmptyView.findViewById(mEmptyViewButtonId);
                 emptyViewButton.setVisibility(View.GONE);
             }
         }
-        if (mLoadingView==null) {
+        if (mLoadingView == null) {
             mLoadingView = (ViewGroup) mInflater.inflate(R.layout.view_loading, null);
             mLoadingAnimationViewId = R.id.imageViewLoading;
-            if (!(mLoadingMessageViewId>0)) mLoadingMessageViewId = R.id.textViewMessage;
-            if (mShowLoadingButton && mLoadingViewButtonId>0 && mLoadingButtonClickListener!=null) {
+            if (!(mLoadingMessageViewId > 0)) mLoadingMessageViewId = R.id.textViewMessage;
+            if (mShowLoadingButton && mLoadingViewButtonId > 0 && mLoadingButtonClickListener != null) {
                 View loadingViewButton = mLoadingView.findViewById(mLoadingViewButtonId);
                 if (loadingViewButton != null) {
                     loadingViewButton.setOnClickListener(mLoadingButtonClickListener);
                     loadingViewButton.setVisibility(View.VISIBLE);
                 }
-            }
-            else if (mLoadingViewButtonId>0) {
+            } else if (mLoadingViewButtonId > 0) {
                 View loadingViewButton = mLoadingView.findViewById(mLoadingViewButtonId);
                 loadingViewButton.setVisibility(View.GONE);
             }
         }
-        if (mErrorView==null) {
+        if (mErrorView == null) {
             mErrorView = (ViewGroup) mInflater.inflate(R.layout.view_error, null);
-            if (!(mErrorMessageViewId>0)) mErrorMessageViewId = R.id.textViewMessage;
-            if (mShowErrorButton && mErrorViewButtonId>0 && mErrorButtonClickListener!=null) {
+            mErrorImageViewId = R.id.imageViewError;
+            if (!(mErrorMessageViewId > 0)) mErrorMessageViewId = R.id.textViewMessage;
+            if (mShowErrorButton && mErrorViewButtonId > 0 && mErrorButtonClickListener != null) {
                 View errorViewButton = mErrorView.findViewById(mErrorViewButtonId);
                 if (errorViewButton != null) {
                     errorViewButton.setOnClickListener(mErrorButtonClickListener);
                     errorViewButton.setVisibility(View.VISIBLE);
                 }
-            }
-            else if (mErrorViewButtonId>0) {
+            } else if (mErrorViewButtonId > 0) {
                 View errorViewButton = mErrorView.findViewById(mErrorViewButtonId);
                 errorViewButton.setVisibility(View.GONE);
             }
