@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/ic_collect" android:state_checked="true" />
-    <item android:drawable="@drawable/ic_uncollect" />
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:drawable="@drawable/ic_collect" />
+        </layer-list>
+
+    </item>
+    <item>
+        <layer-list>
+            <item android:drawable="@drawable/ic_uncollect" />
+        </layer-list>
+    </item>
 </selector>

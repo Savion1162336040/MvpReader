@@ -33,7 +33,6 @@ public class JUHENewsAdapter extends BaseQuickAdapter<JUHENewsData, BaseViewHold
     @Override
     protected void convert(BaseViewHolder helper, JUHENewsData item) {
         helper.setText(R.id.adapter_juhe_news_title, item.getTitle())
-                .setText(R.id.adapter_juhe_news_content, item.getTitle())
                 .setText(R.id.adapter_juhe_news_date, item.getDate())
                 .setText(R.id.adapter_juhe_news_athor, item.getAuthor_name());
         Glide.with(application).load(item.getThumbnail_pic_s()).into((ImageView) helper.getView(R.id.adapter_juhe_news_icon));

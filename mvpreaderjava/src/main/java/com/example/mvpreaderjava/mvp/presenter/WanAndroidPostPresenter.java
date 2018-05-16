@@ -65,6 +65,9 @@ public class WanAndroidPostPresenter extends RxPresenter<WanAndroidPostContract.
         add(dataManager.getMainPostList(page)
                 .compose(RxUtils.commonFlowableScheduler())
                 .compose(RxUtils.handlerWanAndroidData())
+                .doOnSubscribe(subscription -> {
+                    if (isAttached()) view.loading();
+                })
                 .flatMap((Function<WanAndroidData, Publisher<List<WanAndroidPost>>>) wanAndroidData -> {
                     //接口获取totle数据空
                     if (wanAndroidData.getTotal() == 0) {
@@ -103,7 +106,6 @@ public class WanAndroidPostPresenter extends RxPresenter<WanAndroidPostContract.
                     if (isAttached())
                         view.progress("collecting...");
                 })
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new CommomSubscriber<String>(view, false) {
                     @Override
                     public void onNext(String s) {

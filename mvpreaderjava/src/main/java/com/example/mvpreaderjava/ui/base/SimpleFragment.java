@@ -17,6 +17,7 @@ import com.example.mvpreaderjava.ui.widget.DialogAlert;
 import com.example.mvpreaderjava.ui.widget.EmptyLayout;
 import com.example.mvpreaderjava.ui.widget.imp.OnDialogCallBack;
 import com.orhanobut.logger.Logger;
+import com.savion.loadinglayout.LoadingLayout;
 
 import java.io.Serializable;
 
@@ -39,7 +40,7 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
     private boolean hasArgument = false;
 
     private EmptyLayout emptyLayout=null;
-    private EmptyLayout emptyView=null;
+    private LoadingLayout emptyView=null;
 
     protected DialogAlert mDialogAlert;
 
@@ -78,8 +79,8 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
         this.emptyLayout = layout;
     }
 
-    public void setUpEmptyView(EmptyLayout emptyView) {
-        setUpEmptyLayout(emptyView);
+    public void setUpEmptyView(LoadingLayout emptyView) {
+        this.emptyView = emptyView;
     }
 
     @Override
@@ -126,31 +127,43 @@ public abstract class SimpleFragment<A extends Serializable> extends SupportFrag
 
     @Override
     public void loading() {
-        if (emptyLayout != null) {
-            emptyLayout.showLoading();
+//        if (emptyLayout != null) {
+//            emptyLayout.showLoading();
+//        }
+        if (emptyView != null) {
+            emptyView.showLoading();
         }
     }
 
     @Override
     public void error() {
         showToast("error");
-        if (emptyLayout != null) {
-            emptyLayout.showError();
+//        if (emptyLayout != null) {
+//            emptyLayout.showError();
+//        }
+        if (emptyView != null) {
+            emptyView.showError();
         }
     }
 
     @Override
     public void content() {
-        if (emptyLayout != null) {
-            emptyLayout.hide();
+        if (emptyView != null) {
+            emptyView.showContent();
         }
+//        if (emptyLayout != null) {
+//            emptyLayout.hide();
+//        }
     }
 
     @Override
     public void empty() {
-        if (emptyLayout != null) {
-            emptyLayout.showEmpty();
+        if (emptyView != null) {
+            emptyView.showEmpty();
         }
+//        if (emptyLayout != null) {
+//            emptyLayout.showEmpty();
+//        }
     }
 
     @Override

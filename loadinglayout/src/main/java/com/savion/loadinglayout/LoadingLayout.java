@@ -31,6 +31,7 @@ public class LoadingLayout extends FrameLayout {
     private int _view_empty = R.layout.layout_empty;
     @LayoutRes
     private int _view_loading = R.layout.layout_loading;
+    private int _view_content = NO_ID;
 
     private String _error_text = null;
     private String _empty_text = null;
@@ -72,6 +73,22 @@ public class LoadingLayout extends FrameLayout {
         _text_size = typedArray.getDimension(R.styleable.LoadingLayout_text_size, 15);
         _text_color = typedArray.getColor(R.styleable.LoadingLayout_text_color, Color.BLACK);
         typedArray.recycle();
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        switch (getChildCount()) {
+            case 0:
+                throw new NullPointerException("LoadingLayout need a content layout");
+            case 1:
+                _view_content = getChildAt(0).getId();
+                _viewMaps.put(_view_content, getChildAt(0));
+                showContent();
+                break;
+            default:
+                throw new IllegalArgumentException("LoadingLayout only support one content layout");
+        }
     }
 
     public String get_error_text() {
@@ -183,7 +200,7 @@ public class LoadingLayout extends FrameLayout {
     }
 
     public void showContent() {
-        show(NO_ID);
+        show(_view_content);
     }
 
     public LoadingLayout retry(OnClickListener listener) {
@@ -198,7 +215,9 @@ public class LoadingLayout extends FrameLayout {
         //inflate(指定需要添加的layoutID,root,attachToRoot)
         //root表示需要添加到哪个的根布局（这里指定root的作用是使layoutID的根元素属性能生效，比如layout的width,height等属性是需要有parentLayout才能生效的，如果此处没有指定inflate的root的话，那么layoutID的根布局属性也就不会生效）
         //attachToRoot表示是否立即添加到root上，false的话就需要手动addView添加，true就会立即添加到root上
-        View view = _layoutInflater.inflate(layout, this, true);
+        View view = _layoutInflater.inflate(layout, this, false);
+        view.setVisibility(View.GONE);
+        addView(view);
         _viewMaps.put(layout, view);
 
         ImageView imageView = view.findViewById(R.id.icon);

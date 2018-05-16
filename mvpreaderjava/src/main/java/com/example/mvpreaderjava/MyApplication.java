@@ -11,6 +11,7 @@ import com.example.mvpreaderjava.di.module.AppModule;
 import com.example.mvpreaderjava.di.module.HttpModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by sw116 on 2018/4/19.
@@ -32,6 +33,7 @@ public class MyApplication extends MultiDexApplication {
         //清除Logger适配器，添加AndroidLogAdapter格式适配器
         Logger.clearLogAdapters();
         Logger.addLogAdapter(new AndroidLogAdapter());
+        LeakCanary.install(this);
     }
 
     public AppComponent component;

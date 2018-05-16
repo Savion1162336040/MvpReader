@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.mvpreaderjava.ui.widget.EmptyLayout
+    <com.savion.loadinglayout.LoadingLayout
         android:id="@+id/post_emptylayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,6 +17,6 @@
             android:layout_height="match_parent"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
-    </com.example.mvpreaderjava.ui.widget.EmptyLayout>
+    </com.savion.loadinglayout.LoadingLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

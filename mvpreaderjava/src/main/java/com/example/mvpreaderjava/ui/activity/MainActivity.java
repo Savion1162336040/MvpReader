@@ -57,8 +57,8 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
     @BindView(R.id.main_navigation)
     NavigationView navigationView;
 
-    SupportFragment fragmentImg;
-    SupportFragment fragmentWanA;
+    JUHENewsMainFragment fragmentImg;
+    WanAndroidMainFragment fragmentWanA;
 
     SupportFragment showFragment;
     SupportFragment hideFragment;
@@ -109,29 +109,7 @@ public class MainActivity extends SimpleActivity implements BaseMainFragment.Fra
             case R.id.main_drawer_action_coming:
                 showToast("coming soon...");
                 break;
-            case R.id.main_drawer_action_activities:
-                getPackageinfo(PackageManager.GET_ACTIVITIES);
-                break;
-            case R.id.main_drawer_action_filter:
-                getPackageinfo(PackageManager.GET_INTENT_FILTERS);
-                break;
-            case R.id.main_drawer_action_instrumentation:
-                getPackageinfo(PackageManager.GET_INSTRUMENTATION);
-                break;
-            case R.id.main_drawer_action_providers:
-                getPackageinfo(PackageManager.GET_PROVIDERS);
-                break;
-            case R.id.main_drawer_action_receivers:
-                getPackageinfo(PackageManager.GET_RECEIVERS);
-                break;
-            case R.id.main_drawer_action_signatures:
-                getPackageinfo(PackageManager.GET_SIGNATURES);
-                break;
-            case R.id.main_drawer_action_flatmap:
-                break;
-            case R.id.main_drawer_action_concatmap:
-                break;
-            case R.id.main_drawer_action_dialo:
+            case R.id.main_drawer_action_test:
                 startActivity(new Intent(this, TestActivity.class));
                 break;
         }

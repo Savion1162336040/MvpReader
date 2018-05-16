@@ -32,7 +32,7 @@ public abstract class BaseMainFragment extends SimpleFragment {
         appCompatActivity = (AppCompatActivity) activity;
     }
 
-    protected void setupToolbar(Toolbar toolbar,String title) {
+    protected void setupToolbar(Toolbar toolbar, String title) {
         appCompatActivity.setSupportActionBar(toolbar);
         appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         appCompatActivity.getSupportActionBar().setHomeButtonEnabled(true);
@@ -41,6 +41,11 @@ public abstract class BaseMainFragment extends SimpleFragment {
                 R.string.drawer_close_des);
         mDrawerToggle.syncState();
         fragmentCallback.getDrawer().addDrawerListener(mDrawerToggle);
+    }
+
+    public void setTag(String tag) {
+        if (appCompatActivity != null && appCompatActivity.getSupportActionBar() != null)
+            appCompatActivity.getSupportActionBar().setTitle(tag);
     }
 
     public interface FragmentCallback {

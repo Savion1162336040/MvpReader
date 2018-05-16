@@ -30,7 +30,9 @@ public class JUHEPresenter extends RxPresenter<JUHEContract.View> implements JUH
                 .compose(RxUtils.commonFlowableScheduler())
                 .compose(RxUtils.handlerResult())
                 .compose(RxUtils.handlerData())
-                .doOnSubscribe(subscription -> view.loading())
+                .doOnSubscribe(subscription -> {
+                    if (isAttached()) view.loading();
+                })
                 .subscribeWith(new CommomSubscriber<List<JUHENewsData>>(view, true) {
                     @Override
                     public void onNext(List<JUHENewsData> data) {

@@ -16,6 +16,7 @@ import com.example.mvpreaderjava.mvp.presenter.WanAndroidPostPresenter;
 import com.example.mvpreaderjava.ui.adapter.HomePostAdapter;
 import com.example.mvpreaderjava.ui.base.BaseFragment;
 import com.example.mvpreaderjava.ui.widget.EmptyLayout;
+import com.savion.loadinglayout.LoadingLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
     @BindView(R.id.post_refresh)
     protected SwipeRefreshLayout refreshLayout;
     @BindView(R.id.post_emptylayout)
-    protected EmptyLayout emptyLayout;
+    protected LoadingLayout emptyLayout;
     protected HomePostAdapter adapter;
     protected List<WanAndroidPost> posts = new ArrayList<>();
 
@@ -53,7 +54,6 @@ public class WanAndroidPostFragment extends BaseFragment<String, WanAndroidPostP
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        loading();
         adapter = new HomePostAdapter(R.layout.adapter_wan_android_home_post, posts);
         adapter.setOnItemChildClickListener(this);
         adapter.setOnItemClickListener(this);
